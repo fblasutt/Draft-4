@@ -1,0 +1,33 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{Austin and Fine}{2017}]{austin2017}
+Austin, P.~C. and Fine, J.~P. (2017).
+\newblock Practical recommendations for reporting {F}ine-{G}ray model analyses
+  for competing risk data.
+\newblock {\em Statistics in Medicine}, 36(27):4391--4400.
+
+\bibitem[\protect\astroncite{Croissant}{2012}]{croissant2012}
+Croissant, Y. (2012).
+\newblock Estimation of multinomial logit models in {R}: The mlogit packages.
+  {R}etreived from http://cran.
+  r-project.org/web/packages/mlogit/vignettes/mlogit.pdf.
+
+\bibitem[\protect\astroncite{Fine and Gray}{1999}]{fine1999}
+Fine, J.~P. and Gray, R.~J. (1999).
+\newblock A proportional hazards model for the subdistribution of a competing
+  risk.
+\newblock {\em Journal of the American statistical association},
+  94(446):496--509.
+
+\bibitem[\protect\astroncite{Grambsch and Therneau}{1994}]{grambsch1994}
+Grambsch, P.~M. and Therneau, T.~M. (1994).
+\newblock Proportional hazards tests and diagnostics based on weighted
+  residuals.
+\newblock {\em Biometrika}, 81(3):515--526.
+
+\bibitem[\protect\astroncite{Jenkins}{1995}]{jenkins1995}
+Jenkins, S.~P. (1995).
+\newblock Easy estimation methods for discrete-time duration models.
+\newblock {\em Oxford bulletin of economics and statistics}, 57(1):129--136.
+
+\end{thebibliography}

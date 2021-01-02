@@ -1,0 +1,31 @@
+{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}              \begin{tabular}{l*{6}{c}}                          \toprule  
+\\[-1.8ex] & \multicolumn{3}{c}{Sample I} & \multicolumn{3}{c}{Sample II} \\ 
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} 			
+		           &\multicolumn{1}{c}{(1)}  &\multicolumn{1}{c}{(2)}  &\multicolumn{1}{c}{(3)}     &\multicolumn{1}{c}{(4)} &\multicolumn{1}{c}{(5)} &\multicolumn{1}{c}{(6)}         \\             \midrule             \textsc{Dep. Variable:} & & & & & & \\\textsc{Sub-Hazard of Marriage} & & & & & & \\ & & & & & &\\
+Completed College (0/1)&     1.89\sym{***}&     1.57\sym{***}&     1.52\sym{***}&     1.91\sym{***}&     1.69\sym{***}&     1.62\sym{***}\\
+                &   (0.08)         &   (0.10)         &   (0.10)         &   (0.08)         &   (0.12)         &   (0.11)         \\
+Educational Homogamy (0/1)&                  &     1.13\sym{*}  &     1.14\sym{*}  &                  &     1.21\sym{***}&     1.22\sym{***}\\
+                &                  &   (0.08)         &   (0.08)         &                  &   (0.09)         &   (0.09)         \\
+Age             &                  &     1.29\sym{***}&     1.29\sym{***}&                  &     1.35\sym{***}&     1.36\sym{***}\\
+                &                  &   (0.11)         &   (0.11)         &                  &   (0.12)         &   (0.12)         \\
+Age Squared     &                  &     1.00\sym{**} &     1.00\sym{**} &                  &     1.00\sym{**} &     1.00\sym{**} \\
+                &                  &   (0.00)         &   (0.00)         &                  &   (0.00)         &   (0.00)         \\
+Female          &                  &     0.97         &     0.98         &                  &     0.95         &     0.97         \\
+                &                  &   (0.04)         &   (0.04)         &                  &   (0.04)         &   (0.04)         \\
+Hispanic        &                  &     0.68\sym{***}&     0.70\sym{***}&                  &     0.71\sym{***}&     0.73\sym{***}\\
+                &                  &   (0.04)         &   (0.04)         &                  &   (0.05)         &   (0.05)         \\
+Church          &                  &     1.15\sym{***}&     1.15\sym{***}&                  &     1.14\sym{***}&     1.14\sym{***}\\
+                &                  &   (0.02)         &   (0.02)         &                  &   (0.02)         &   (0.02)         \\
+Black           &                  &     0.40\sym{***}&     0.42\sym{***}&                  &     0.41\sym{***}&     0.43\sym{***}\\
+                &                  &   (0.02)         &   (0.03)         &                  &   (0.03)         &   (0.03)         \\
+Age Difference of Partners&                  &     0.97\sym{***}&     0.97\sym{***}&                  &     0.97\sym{***}&     0.97\sym{***}\\
+                &                  &   (0.00)         &   (0.00)         &                  &   (0.00)         &   (0.00)         \\
+Smoke           &                  &     0.57\sym{***}&     0.58\sym{***}&                  &     0.58\sym{***}&     0.58\sym{***}\\
+                &                  &   (0.03)         &   (0.03)         &                  &   (0.03)         &   (0.03)         \\
+Rural           &                  &     0.78\sym{***}&     0.78\sym{***}&                  &     0.77\sym{***}&     0.77\sym{***}\\
+                &                  &   (0.05)         &   (0.05)         &                  &   (0.06)         &   (0.06)         \\
+Initial Nr. of Children&                  &                  &     0.92\sym{***}&                  &                  &     0.92\sym{***}\\
+                &                  &                  &   (0.02)         &                  &                  &   (0.03)         \\
+Year Relationship Starts Dummies & & \checkmark & \checkmark &  & \checkmark  & \checkmark\\         Religion Dummies & & \checkmark & \checkmark &  & \checkmark  & \checkmark\\         Geographic Controls  & & \checkmark & \checkmark &  & \checkmark & \checkmark\\                         \hline
+Observations    &     9707         &     9616         &     9616         &     7910         &     7841         &     7841         \\
+\hline

@@ -1,0 +1,214 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[12pt]{article}
+\usepackage[round, sort, authoryear, numbers,]{natbib}
+\usepackage[T1]{fontenc}
+%%% PAGE DIMENSIONS
+\usepackage[margin=2.5 cm]{geometry}
+\usepackage{blindtext} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+\usepackage{tgpagella}
+
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{epstopdf}
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+%%% PACKAGES
+\usepackage{placeins}
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{amsmath}
+\usepackage{cases}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{authblk}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\linespread{1.5}
+
+\usepackage{amssymb} 
+\usepackage{tabularx}
+\usepackage{subfig}
+\usepackage{kpfonts}    % for nice fonts
+\usepackage{microtype} 
+\usepackage{booktabs}   % for nice tables
+\usepackage[colorlinks=false, linktocpage=true]{hyperref}
+
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+% use for hypertext
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+
+
+%%% The "real" document content comes below...
+\title{Premarital cohabitation as an information device and mating strategy differences by education\thanks{The author acknowledges financial support from the French speaking community of Belgium (ARC project 15/19-063 on "family transformations"). The author wishes to thank David de la Croix and Fabio Mariani for their useful comments.}}
+\author{Fabio Blasutto\thanks{IRES, Université catholique de Louvain; email: fabio.blasutto@uclouvain.be}}
+
+ \begin{document}
+\bibliographystyle{IEEEtranN}
+	\maketitle
+\begin{abstract}
+The theory that I propose in this paper is a model of search and dissolution in the mating market (marriage and cohabitation), where agents take their decisions according to match quality. The contribution to the literature is twofold. First, I claim that premarital cohabitation has a positive impact on the subsequent marriage duration through information gathering: despite this effect has been already theorized in the literature (see for example  \citet{brien2006} or \citet{marinescu2016}), it has not been found to be significant when its impact was estimated with data (the only exception to my knowledge is  \citet{svarer2004} for the case of Denmark). The key ingredient to make premarital cohabitation matter is to distinguish between \textit{extensive margin} of cohabitation (just having cohabited before marriage or not) that account for self selection, and \textit{intensive margin} of cohabitation (the lenght of premarital cohabitation), that accounts for information gathering. Secondly, I am the only one to account for heterogeneity in education in the broad context of the mating market, which matters to the extent that the least educated cohabit more times, their cohabitations' spells are on average longer and their marriage is shorter.
+\end{abstract}
+\textbf{Keywords}: Marriage, Cohabitation, Divorce, Heterogeneous Agents, Match Quality Models\\
+\textbf{JEL-Code}: D83 - J12 
+\clearpage
+\noindent \medskip{}
+\section{Introduction}
+The aim of this document is to present some stylized facts about cohabitation, its impact on the duration of the subsequent marriage and its relations with education and assortative mating. The idea is first to document the key stylized facts that characterize cohabitation, marriage and assortative mating and then build a theory that is able to match them. In this document I start presenting the stylized facts, while in the third section I will move to a proposal of a theory.
+\section{Stylized Facts}
+ The data used is from the database "National Longitudinal Survey of Youth 97", a national longitudinal survey of people born in the USA between 1980 and 1983 and followed until 2013. There are two main reasons that pushed me to work with this data. First, monthly precision for history of cohabitation and marriage is provided, which allows me to account not only for the presence or not of cohabitation before marriage (the \textit{extensive margin} of premarital cohabitation), but also its lenght, that I will call \textit{intensive margin} of premarital cohabitation. None in the literature made this difference, while I argue that it is essential for a full understanding of the effect of cohabitation on marriages. Secondly, this data contains a \textit{roaster} of some characteristics of the partner, such as age, race and education: this will allow me to check whether the effect of marital cohabitation on marriage duration is different when the couple matched assortatively or not.
+ Now I present some facts about cohabitation.
+ \\
+\begin{itemize}
+	\item \textit{Less educated people cohabit more.} The number of cohabitation ever experienced is different by educational level: in 2013 the least skilled have on average cohabited more times than the skilled people.
+	\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{cohabitation_number}
+\caption{}
+\label{fig:cohabitationnumber}
+\end{figure}
+\bigskip
+	\item\textit{The spell of cohabitation of the least educated people last less.} The least educated not only experience  more cohabitations during their life, but these are also longer than for educated people:
+	\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{cohab_survival}
+\caption{}
+\label{fig:cohabsurvival}
+\end{figure}
+	\item\textit{The spell of cohabitation of the least educated is less likely to end up in marriage.} Among the cohabitation spells that are not truncated \footnote{The proportion of truncated observations is constant among the educational categories.}, the probability that the cohabitation evolves into a marriage is the highest if both member are college graduated, the lowest if the two members of the couple don't have a bachelor degree.
+	\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{cohab_dissolution}
+\caption{}
+\label{fig:cohabdissolution}
+\end{figure}
+	\item\textit{The duration of marriage is higher for college graduate.} The graph shows that marriages last longer if at least one in the couple is a college graduate. Moreover, it can be noticed that cohabitations are on average shorter than marriages.
+	\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{marraige_survival}
+\caption{}
+\label{fig:marraigesurvival}
+\end{figure}
+	\item\textit{Assortative mating is higher for marriages.} Assortative mating, calculated as the correlation of the years of education of the couple, if positive for both cohabitation and marriage, but the latter is slightly higher: 0.4876 versus 0.4213.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{cohab_assmating}
+\caption{}
+\label{fig:cohabassmating}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{marriage_assmating}
+\caption{}
+\label{fig:marriageassmating}
+\end{figure}
+	\item\textit{Premarital cohabitation has a detrimental effect on marriage duration.} From the graph we can observe that the percentage of couples that have not cohabited before marriage shows an higher survival starting form month 40. This apparently counter intuitive effect is well known in the literature and it is due to self selection, as \cite{lillard1995} point out.
+	\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{marr_duration_cohab}
+\caption{}
+\label{fig:marrdurationcohab}
+\end{figure}
+\item\textit{The intensive margin of premarital cohabitation matters for marriage duration.}
+The fact that there is self selection into premarital cohabitation for low quality matches does not prevent cohabitation to have a positive impact on subsequent marriage duration. In the regression below, in fact, I show that the lenght of premarital cohabitation shift downward the baseline hazard, which means that it has a positive effect on duration. I have inserted also the square of the cohabitation lenght because I belive that this mechanism works through information gathering: the amount of information that can be accumulated about the match's quality diminishes with time.
+
+{
+	\begin{table}[H]\centering
+		\caption{Estimation results : Cox proportional Hazard Model for marriage duration
+			\label{tabresult cox}}
+		\begin{tabular}{l c c }\hline\hline 
+			\multicolumn{1}{c}
+			{\textbf{Variable}}
+			& {\textbf{Coefficient}}  & \textbf{(Std. Err.)} \\ \hline
+			Not cohabited Dummy  &  -0.312***  & (0.113)\\
+			Cohabitation Lenght  &  -0.018***  & (0.007)\\
+			Cohabitation Lenght squared  &  0.0002159***   & (0.000)\\
+			Highest educational Grade  &  -0.049***  & (0.017)\\
+			Year of Birth dummies  &  & \\
+			Year of Marriage dummies & & \\
+			Religiosity dummies & & \\
+			Race dummies & & \\
+			Female  &  0.078  & (0.085)\\
+            Religion Dummies & & \\	
+			Cohabitation ordinal number  &  0.885***  & (0.137)\\
+			Number of Previous cohabitation  &  0.290***  & (0.054)\\
+			\hline
+		\end{tabular}
+	\end{table}
+}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Cohabitation_effect}
+\caption{}
+\label{fig:cohabitationeffect}
+\end{figure}
+
+\end{itemize}
+\clearpage
+\section{A Theory Proposal}
+The theory that I propose in this paper is a model of search and dissolution in the mating market (marriage and cohabitation), where agents take their decisions according to match quality. The key idea is that cohabitation serves as a "marriage trial" with low costs of dissolution, that permits to gather information about the other. If the initial observed quality is high, the couple move directly to marriage (self selection in a marriage without premarital cohabitation for the couples with a good initial match quality), while if the initial observed quality is not high enough they cohabit and the subsequent marriage duration increases with cohabitation lenght thanks to information gathered about the match quality (see figure 8). The second idea is that cohabitation permits some of the usual gain of marriage (for example joint consumption of public goods, risk sharing or companionship) with lower costs of dissolution. In other words, cohabitation allows to have some economic gains with a risk of dissolution that is higher because of the lower costs of dissolution. If we assume supermodularity, we can explain the differences in the mating strategy (see figures 1-7) by education: the most educated value relatively more the gains for marrying a person with their same education (they have lower economic problems), so they wait more to marry and they cohabit to gain information about the other but for a short time, because the amount of information gathered diminishes with time. The least educated instead value relatively more the economic gains from cohabitation because of their poor economic conditions, so they accept to enter a cohabitation even thought the initial quality match is low (this explain their high number of cohabitations) and they stay in a relationship longer for the same reason.
+\subsection{The Model}
+The model that I will develop os of the match quality type. Agents are heterogeneous and can be of the type $i \in \{H,L\}$: I will interpret it as high or low education. When they are single, they meet in every period $t$ a potential partner, that it is associated with an unobserved match quality $\theta\sim\mathcal{N}(0,\sigma_\theta^2)$ and with a noisy signal of the true match quality $\epsilon_t$ that is distributed and evolves as follows:
+\begin{equation}
+\epsilon_t-\theta=\rho(\epsilon_{t-1}-\theta)+\mu_t
+\end{equation}
+Where $\mu_t$ is normally iid with mean zero and variance $\sigma_{\mu}$. After having received the noisy signal, the agents have to decide whether to stay single, to marry or to cohabit. If they are cohabiting, in every period they receive $\epsilon_t$ given $\theta$ and they have to decide whether to continue cohabitation, to marry or to separate and become single. When they are married, they  receive $\epsilon_t$ given $\theta$ and they have to decide whether to continue the marriage or to divorce at a cost $d$ and to become single. The time utility that an agent  $i \in \{H,L\}$ receive is given by $u_{0,i}$ is single and $u_{i,j}$ if he is in a relationship with a person of the type $j$. Moreover, I will denote by $q_{j,s}$ the share of people of the sex $k\in\{f,m\}$ of the type $j \in \{H,L\}$.\\
+The lifetime utility for a single of sex $r\in\{f,m\}$, type $j\in\{H,L\}$ that meets people of sex  $g\in\{f,m\}$/$r$ of type  $i\in\{H,L\}$ is:
+\begin{equation}\label{eq:vsi}
+\begin{split}
+V_{0,j}=u_{0,j}+ \\ \beta\sum_{i\in \{H,L\}}\int&\int\max\bigg\{V_{0,j};V^{c,r}_{j,i}(\theta,\epsilon_t)\mathcal{I}_j^c(\theta,\epsilon_t,i);V^{s,r}_{j,i}(\theta,\epsilon_t)\mathcal{I}_j^s(\theta,\epsilon_t,i)\bigg\}q^{g}_i dF(\theta)dG(\mu);
+\end{split}
+\end{equation}
+where
+\begin{equation}
+\mathcal{I}^c_j(\theta,\epsilon_t,i)=
+\begin{cases}
+1       & \quad \text{if }V^{c,g}_{i,j}(\theta,\epsilon_t) \geq V_{i,0}\\
+0  & \quad else
+\end{cases}
+\end{equation}
+and
+\begin{equation}
+\mathcal{I}^s_j(\theta,\epsilon_t,i)=
+\begin{cases}
+1       & \quad \text{if }V^{s,g}_{i,j}(\theta,\epsilon_t) \geq\max\big\{V_{i,0},V^{c,g}_{i,j}(\theta,\epsilon_t)\big\}\\
+0  & \quad else,
+\end{cases}
+\end{equation}
+assuming $u_{0,j}>0$. If she is cohabiting with a partner of the type $j$, and with the draws $(\theta,\epsilon_t)$, her flow utility is
+\begin{equation}\label{eq:vco}
+V^{c,r}_{j,i}(\theta,\epsilon_{t-1})=u_{j,i}+ \beta\int\max\bigg\{V_{0,j};V^{c,r}_{j,i}(\theta,\epsilon_t)\mathcal{I}_j^c(\theta,\epsilon_t,i);V^{s,r}_{j,i}(\theta,\epsilon_t)\mathcal{I}_j^s(\theta,\epsilon_t,i)\bigg\} dG(\mu);
+\end{equation}
+while if she is married the bellman equation is
+\begin{equation}\label{eq:vsp}
+V^{s,r}_{j,i}(\theta,\epsilon_{t-1})=u_{j,i}+ \beta\int\max\bigg\{V_{0,j};V^{s,r}_{j,i}(\theta,\epsilon_t)\mathcal{I}_j^s(\theta,\epsilon_t,i)\bigg\} dG(\mu);
+\end{equation}
+
+%\bibliographystyle{siam}
+\bibliography{mybibliography}
+
+\end{document}

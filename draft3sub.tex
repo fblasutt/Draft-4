@@ -1,0 +1,831 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[12pt]{article}
+%\documentclass[AEJ]{AEA}
+\usepackage[round, sort , authoryear]{natbib}
+
+
+\usepackage{pgf}
+%%% PAGE DIMENSIONS
+\usepackage[margin=2.5cm]{geometry}
+%\usepackage[top=1.5in, bottom=1.5in, left=1.5in, right=1in]{geometry}
+\usepackage{blindtext} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+\geometry{margin=1.5in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage[utf8]{inputenc} 
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{epstopdf}
+\usepackage[hang]{footmisc}
+\usepackage{lipsum}
+\usepackage{setspace}
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+%%% PACKAGES
+\usepackage{placeins}
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+%\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{amsmath}
+%\numberwithin{table}{section}
+\usepackage{cases}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{authblk}
+\usepackage{titling}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\linespread{1.5}
+\usepackage{xr}
+\externaldocument{onlineappendix}
+\setlength{\footnotemargin}{4mm}
+\usepackage{amssymb} 
+\usepackage{tabularx}
+%\usepackage{subfig}
+\addtolength{\footnotesep}{2mm} % change to 1mm
+
+%For new line in table
+\usepackage{threeparttablex}
+
+\usepackage{mathtools}
+
+\newcommand\iidsim{\stackrel{\mathclap{iid}}{\sim}}
+
+%For Counting Figures in the Appendix
+\usepackage{chngcntr}
+
+%Nice Figure and table headers
+\captionsetup[figure]{labelfont={sc},name={Figure},labelsep=period}
+ \captionsetup[table]{labelfont={sc},name={Table},labelsep=period,justification=centering}
+ 
+\usepackage{booktabs}   % for nice tables
+\usepackage[colorlinks=false, linktocpage=true]{hyperref}
+%\usepackage[flushmargin]{footmisc}
+%\addtolength{\footnotesep}{3mm} % change to 1mm
+\hypersetup{
+	colorlinks,
+	linkcolor={blue!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+% use for hypertext
+\usepackage[colorinlistoftodos]{todonotes}
+\newenvironment{customlegend}[1][]{%
+	\begingroup
+	% inits/clears the lists (which might be populated from previous
+	% axes):
+	\pgfplots@init@cleared@structures
+	\pgfplotsset{#1}%
+}{%
+% draws the legend:
+\pgfplots@createlegend
+\endgroup
+}%
+%For Figures, below
+\usepackage{subcaption}
+%\renewcommand{\thesubfigure}{ (\alph{subfigure})}
+%\captionsetup[sub]{labelformat=simple}
+
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{shapes}
+\usepgflibrary{arrows} % LATEX and plain TEX and pure pgf
+\usepgflibrary[arrows] % ConTEXt and pure pgf
+\usetikzlibrary{arrows} % LATEX and plain TEX when using Tik Z
+\usetikzlibrary[arrows] % ConTEXt when using Tik Z
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\setlength{\abovecaptionskip}{4pt plus 3pt minus 2pt} 
+
+\newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .03\baselineskip minus .03\baselineskip}
+\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+\let\oldthebibliography\thebibliography
+\renewcommand\thebibliography[1]{%
+	\oldthebibliography{#1}%
+	\setlength{\parskip}{\bibitemsep}%
+	\setlength{\itemsep}{\bibparskip}%
+}
+
+%for math
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+%%% The "real" document content comes below...
+\setlength{\droptitle}{-1cm} 
+
+\title{Cohabitation \textit{vs} Marriage:\\ Mating Strategies by Education in the USA\thanks{The author wishes to thank David de la Croix, Fabio Mariani, Stefania Albanesi, Pierre-André Chiappori, Matthias Doepke, Fabian Kindermann,  Rigas Oikonomou and Alessandra Voena for their useful comments. Egor Kozlov provided invaluable help for the development of the computational part. The author acknowledges financial support from the French speaking community of Belgium (ARC project 15/19-063 on \textit{family transformations} and \textit{mandat d' aspirant} FC 23613).}}
+\author{Fabio Blasutto\thanks{IRES/LIDAM, UCLouvain and FNRS. E-mail: \tt{fabio.blasutto@uclouvain.be}}}
+
+ \begin{document}
+ %Stuff for figures, below
+
+ 	\tikzstyle{block} = [draw, fill=white, rectangle, 
+ 	minimum height=3em, minimum width=6em]
+ 	\tikzstyle{sum} = [draw, fill=white, circle, node distance=1cm]
+ 	\tikzstyle{input} = [coordinate]
+ 	\tikzstyle{output} = [coordinate]
+ 	\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+ 	
+ 	
+ 	%Gauss distribution
+ 	\pgfmathdeclarefunction{gauss}{2}{%
+ 		\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+ 	}
+ % Bibliography style, important for biblatex functioning	
+\bibliographystyle{apa}
+
+
+	\maketitle
+%\begin{abstract}
+%Living together without being married is a common practice in the United States, especially among those with fewer years of education. Little is known about the reasons behind cohabitation, both as a substitute for marriage and as a partnership that precedes it. To understand the drivers of the different mating behaviors by education, I estimate a structural life cycle model featuring partnership choice and learning about relationship quality. The surplus of marriage with respect to cohabitation stems from a better
+%risk-sharing and specialization within the household, enforced through a costly divorce. Since the commitment gains of marriage crucially depend on the match quality, there is a logic to premarital cohabitation because it allows learning about the quality of the match. In the model, the structure of labor market earnings of people with a different education gives rise to different mating strategies interacting with these incentives. I find that for college graduates cohabitation is more of an investment good, used to gather information about the partner that they eventually marry, while for those with fewer years of education informal cohabitation is more of a consumption good, used as a cheap substitute for marriage.
+%\end{abstract}
+%\begin{abstract}
+%This paper shows that for college graduates cohabitation is more of an investment good, used to gather information about the partner that they eventually marry, while for those with fewer years of education informal cohabitation is more of a consumption good, used as a cheap substitute for marriage. To understand the drivers of the different mating behaviors by education, I estimate a structural life cycle model featuring partnership choice and learning about relationship quality. Marriage enables better consumption insurance and labor specialization than cohabitation, thanks to divorce that, being costly, acts as a commitment device. Since the commitment gains of marriage crucially depend on the match quality, there is a logic to premarital cohabitation because it allows learning about relationship quality. I find that the structure of labor market earnings accounts for the different likelihood to cohabit and to marry of people with different levels of education by influencing their demand for commitment.
+%\end{abstract}
+
+%\begin{abstract}
+%This paper analyzes the determinants of cohabitation in the US. We first document that .. [summary of main stylized facts, with differences by education]. We then provide a theoretical rationale for these stylized facts, building a life-cycle model of partnership formation in which cohabitation can be both an investment good, useful to learn about the quality of prospective marriage partners, and a consumption good, namely a cheap substitute to marriage. A structural estimation of this model allows me to quantify the relative importance … [summary of findings] Overall, my research suggests that the structure of labor market earnings accounts for the differential likelihood to cohabit and to marry of people with different levels of education, by influencing their demand for commitment.
+%\end{abstract}
+
+\begin{abstract}
+	Cohabiting without being married is a common practice in the United States, especially among noncollege-educated individuals. I provide a theoretical rationale for the different mating behaviors by education, building a life-cycle model of partnership formation in which cohabitation can be both an investment good, useful to learn about the quality of prospective marriage partners, and a consumption good, namely a cheap substitute to marriage. A structural estimation of this model suggests that the composition of labor market earnings accounts for the differential likelihood to cohabit and to marry of people with different education levels, by influencing their demand for commitment.
+\end{abstract}
+
+
+\textbf{Keywords}: Marriage, Cohabitation, Divorce, Heterogeneous Agents, Match Quality Models, Education, Structural Estimation\\
+\textbf{JEL-Code}: D83 - J12 
+\clearpage
+
+The structure of American households is highly polarized. People without a college degree marry at a lower rate, while experiencing a higher likelihood of divorce. At the same time, they are increasingly forming cohabiting unions, which are less stable than marriages, they are often repeated over the life cycle with different partners \citep{lichter2010}, and they have been associated with the increasing number of single mothers \citep{bumpass2000}. Among college graduates cohabitation seems to work differently, being often followed by a marriage.
+
+ Economic incentives can help explain the diverging patterns of partnership choice. According to the seminal work of \citet{becker1981}, people marry both for non-economic (i.e. love and companionship) and economic reasons, which include the sharing of public goods, the division of labor \citep{chiappori1997}, and risk-sharing \citep{voena2015,rigas2015}. These reasons contribute to the explanation for why couples decide to live together, but they are not sufficient to account for the choice between living under the same roof in a love relationship (henceforth cohabitation) and marrying. More specifically, they do not explain why patterns of marriage and cohabitation differ by education.
+
+%In this paper, I study the extent to which economic incentives can explain different mating strategies by education. I focus on the role of learning about the match quality and on its interaction with risk-sharing and specialization in home production. The main trade-off is that marriage enables better consumption insurance and labor specialization than cohabitation, thanks to divorce that, being costly, acts as a commitment device. Cohabitation is cheaper to dissolve, making it a preferred option for couples with a lower match quality. Since partners' wages affect which incentive prevails, the heterogeneous income dynamics by education level can trigger different mating strategies. Some features of the income process of the highly educated, such as its higher volatility and its larger wage gap,\footnote{\cite{blundell2008}, \cite{meghir2004} and \cite{hong2019} find that income volatility of college graduates---defined as the variance of the permanent component of income---is larger among college graduates than those with fewer years of education: I find the same pattern using the PSID. \cite{cortes2019} instead show that the gender pay gap declined more slowly at the top of the distribution.} can explain some part of why they are more likely to choose cohabitation over marriage initially, as these characteristics matter for the demand for insurance and specialization in home production. However, this does not explain why---conditionally on cohabiting---they are also more likely to marry. Since the commitment gains of marriage crucially depend on the match quality, there is a logic to premarital cohabitation because it allows learning about relationship quality. College graduates use cohabitation as an investment good to gather information about the partner they eventually marry. Those with fewer years of education substitute marriage with serial cohabitation, which avoids the danger of a costly divorce while still providing the gains of living together.
+
+In this paper, I study the extent to which economic incentives can explain different mating strategies by education. I focus on the role of learning about the match quality and on its interaction with risk-sharing and specialization in home production. The main trade-off is that marriage enables better consumption insurance and labor specialization than cohabitation, thanks to divorce that, being costly, acts as a commitment device. Cohabitation is cheaper to dissolve, making it a preferred option for couples with the highest risk of dissolution. Since a low relationship quality is associated with a higher instability of the couple, only well-matched partners select into marriage. In this framework there is a logic to premarital cohabitation because it allows learning about the match quality, which crucially influences the gains of marriage by modifying the risk of divorce and hence the ability of the couple to commit. Heterogeneous income dynamics can trigger different mating strategies by influencing the demand for commitment: a lower gender wage gap reduces the scope for specialization in home production and a lower income volatility makes consumption insurance mechanisms less important. Since the income process of college graduates is subject to a higher volatility and a larger wage gap,\footnote{\cite{blundell2008}, \cite{meghir2004} and \cite{hong2019} find that income volatility of college graduates---defined as the variance of the permanent component of income---is larger among college graduates than those with fewer years of education: I find the same pattern using the PSID. \cite{cortes2019} instead show that the gender pay gap declined more slowly at the top of the distribution.} they value commitment more and use cohabitation as an investment good to gather information about the partner they eventually marry. Those with fewer years of education substitute marriage with serial cohabitation, which avoids the danger of a costly divorce while still providing the gains of living together. The main contribution of this paper is to show that modeling cohabitation and marriage as contracts that differ only by their cost of dissolution is enough to quantitatively account for the main patterns in partnership formation and dissolution as well as the differences in mating strategies by education.
+%Importantly, this paper shades light on why people marry, showing that differences in the dissolution costs of two contracts can trigger dramatically different responses
+
+
+I first document how mating strategies differ by education using data from the National Longitudinal Survey of Youth 1997. Using duration models in which I control for a number of confounding factors,\footnote{I control for a range of socioeconomic characteristics that drive partnership choices. In particular, I control for religious affiliation and religiosity, which is linked to the likelihood of marrying according to \citet{thornton2008}. Partnership choice might be linked to religiosity through the stigma towards premarital sex \citep{fernandez2014}. More importantly, \cite{mariani2012} shows that the prevalence of premarital chastity, which is incompatible with cohabitation, increases with social status under some conditions.} I show that among singles, college graduates are less likely to cohabit but not to marry, and that among cohabitors, college graduates are more likely to marry. As in \cite{jovanovic1979}, \citet{brien2006} and \cite{marinescu2016}, I find in the data that the hazard of divorce is  hump-shaped over the duration of marriage and interpret this as evidence of the role of learning about the match quality. To further support the role of learning, I show that the longer the couples cohabit before marrying, the lower is their risk of divorce. By contrast, couples that married directly experienced a lower risk of divorce than those who cohabited for a very short period of time. This evidence is consistent with the work of \citet{lillard1995}, who claim that better matched couples select into marriage without first cohabiting.
+
+ To understand the quantitative relevance of the mechanisms that drive the education-based differences in mating strategies, I build a dynamic model of intrahousehold decision making and search in the mating market, where agents, who are heterogeneous with respect to education, make decisions according to the realization of idiosyncratic income shocks and perceived match quality, in the spirit of \citet{jovanovic1979}. Single agents meet, with a certain probability, a potential partner with an imperfectly observed match quality. After the draw, they can decide whether to stay single, cohabit or marry. The only difference between marriage and cohabitation is that the cost of divorce is higher than that of breakup.\footnote{According to \citet{schramm2006}, the cost of divorce is high and amounts to 14364 US dollars for Utah in 2001.} Decision making process is modeled following the literature on limited commitment (see \cite{pavoni2018} and \cite{marcet2019}), which has been recently applied to dynamic inter-temporal household decisions by \cite{rigas2015}, \cite{voena2015}, \cite{low2018}, \cite{mazzocco2007} and \cite{foerster2019}, among others. In this framework, when one member of the couples wishes to split, for instance because of a bad match quality draw, her bargaining power is increased to make her indifferent between staying or leaving. When participation constraints cannot be met, a divorce or a breakup happens. Female labor supply is endogenous and women face a productivity penalty for not working. Female time can be used to produce a public good which captures utility gains from children, durable goods and services.
+ 
+ The model is estimated using the method of simulated moments to reflect a realistic mating market and female labor supply, and it is evaluated to match an array of external moments tightly linked to the role of learning and selection into marriage. With relatively few parameters, the model is able to match well both targeted and non-targeted moments. The results show that I am able to reproduce accurately the characteristics of mating patterns by education. I also run a series of counterfactual experiments to understand which mechanisms have the strongest role, and find that income volatility is more important than the college premium for explaining the differential mating strategies. Moreover, I find that closing the gender wage gap would decrease by 25\% the share of people ever married by the age of 35 and would almost eliminate the gradient in partnership choices by education. This paper is the first to show that the dynamics of the gender wage gap have a quantitatively important role for explaining the uneven retreat from marriage.  \\
+ %  The ratio of college over non-college ever married at 35 is 1.18 in the data and 1.13 in the simulations, while the ratio of college over non-college that ever cohabited at 35 is 0.86 in the data and 0.55. in the simulations.
+ 
+ My paper makes three contributions. First, I document the different mating behavior by education in the NLSY97 and I argue that the structure of income processes by education, interacting with learning about the match quality and the demand for commitment, accounts for most of the gradient. Demographers and sociologists are the first to document the diverging patterns of partnership choice by education. Among others, \citet{bumpass2000} describe the uneven rise in cohabitation and its effect on children, \citet{lichter2010} observe the emergence of serial cohabitation, which is particularly strong among disadvantaged populations, while \citet{perelli2016} show evidence of an educational divergence in marriage and union dissolution. On the economic side,  \citet{lundberg2016} argue that the socioeconomic gradient in partnership formation and dissolution might have emerged because of the uneven demand for marriage as a commitment technology, that allows intensive joint investment in children. I build on these works, assessing the quantitative relevance of learning, insurance and specialization within the household for explaining these patterns.
+ 
+Second, I am the first to develop a structural dynamic model of partnership choice where: (\textit{i}) opting for marriage or cohabitation is fully endogenous; (\textit{ii}) partnership choices of singles and the transitions from cohabitation to marriage are quantitatively accounted for. Different papers in the literature highlighted various advantages of marriage relative to cohabitation: commitment \citep{matouschek2008,blasutto2020}, labor specialization within the couple \citep{gemici2014}, learning about match quality \citep{brien2006}, and investment in children \citep{lafortune2020}.  \citet{gemici2014} were the first to develop a structural model of marriage and cohabitation where limited commitment triggers the gain of marriage. In their model, the marriage-cohabitation choice is not fully endogenous and they abstract from persistent income shocks, which I show plays a crucial role for partnership strategies when coupled with learning. \cite{lafortune2020} highlight the role of assets as collateral that enforces commitment and hence allows for optimal investment in children within marriage. My model capture the idea that divorce acts as a commitment technology not only to enforce specialization within the household, but also as consumption insurance. \citet{brien2006} develop a model of match quality where agents cohabit in order to learn about quality, but they do not address the interaction between learning and commitment and the cohabitation-marriage choice is not fully endogenous.
+
+Third, my paper also relates to papers exploring the role of learning about match quality \citep{marinescu2016} and selection into marriage and premarital cohabitation \citep{lillard1995,reinhold2010,svarer2004}. I extend their work allowing for the possibility that premarital cohabitation can have a role for marriage stability both through the extensive margin (linked to selection) and the intensive margin (linked to learning). Thanks to this distinction, I am able to claim that both selection into marriage and learning play a quantitatively important role for explaining the relationship between premarital cohabitation and divorce.
+
+The paper is organized as follows. Section 1 documents the different mating strategies by education in the data, as well as the role of premarital cohabitation for divorce. Section 2 presents and develops the theoretical framework. Section 3 describes the estimation of the model, while section 4 presents a series of counterfactual experiments. Section 5 contains the conclusion.
+%\end{doublespace}
+\section{Data and Stylized Facts}
+\subsection{Sample}
+ I use data from the ``National Longitudinal Survey of Youth 97'' (henceforth NLSY97), a national longitudinal survey of 8984 men and women born in the USA between 1980 and 1984. Participants were interviewed annually between 1997 and 2011 and biennially thereafter: the last available round was conducted in 2017. This survey records a large array of socioeconomic characteristics of respondents and of other members of the household. I use this data for two main reasons. First, this survey reports the history of marriage and cohabitation with monthly frequency: this captures cohabitation spells that are shorter than one year, which are non negligible in the sample.\footnote{Indeed 31\% of the spells of cohabitation in my sample are shorter than twelve months.} Another advantage is that the information about respondent's marital and cohabitation status is checked at each wave, thus avoiding a recall bias.\footnote{\cite{hayford2008} study the quality of retrospective data on cohabitation using the National Survey of Family Growth and the National Survey of Family and the Household. They find that the recall bias leads to an underestimation of cohabitation rates.} Second, the survey contains an array of characteristics of respondents and their partners that might be important drivers of partnership choice, such as age, ethnicity, macro area of residence, education, religious affiliation, religiosity and many others. This information will permit to be sure that the stylized fact that I will present still hold once these observables are considered.
+  
+   For my analysis I select a sub sample of the NLSY97 comprising all the observations for which I have full information about the marital history and the information about education is non-missing. The monthly marital history is not available for all the individuals for each round: therefore, I will retain in my final sample just the observations with these characteristics.
+  
+   A shortcoming of this data is that individuals are never observed while they are forty or older. Yet a significant number of respondents have experienced cohabitation and marriage already: over 60\% (70\%) of respondents had been married (cohabiting) at the time of the last survey's wave. It is not uncommon to use samples of young people to examine cohabitation. For instance, the work of \cite{brien2006}, one of the closest papers to mine, uses a sample of women who are followed until age 32. As a consequence, my analysis targets understanding the behavior of young people, when cohabitations are very frequent.   
+      \begin{table}[h!]\centering \small\caption{---Summary statistics}\label{table:stat}
+   	{\begin{tabular}{l c c c}\hline\hline
+   			\multicolumn{1}{l}{\textbf{Variable}} & \textbf{Mean} & \textbf{Std. Dev.} & \textbf{N}\\ \hline\hline
+   			\multicolumn{4}{c}{\textsc{Individuals}}\\
+   			\hline
+   			\input{sumind}
+   			\hline
+   			\multicolumn{4}{c}{\textsc{Marriage Spells}}\\
+   			\hline
+   			\input{tabma}
+   			\hline
+   			\multicolumn{4}{c}{\textsc{Cohabitation Spells}}\\
+   			\hline
+   			\input{tabco}
+   			\hline
+   			\multicolumn{4}{c}{\textsc{Singleness Spells}}\\
+   			\hline
+   			\input{tabsi}
+   			\hline
+   	\end{tabular}}
+   \end{table} 
+  Table \ref{table:stat} provides some summary statistics of individuals, cohabitation, marriage and singleness spells. Notably,  cohabitation spells are much shorter than marriages and that many cohabitations become marriages.\footnote{The duration reported in table \ref{table:stat} does not account for the fact that spells are censored. Instead, hazard rates, reported in figure \ref{fig:haz}, account for this fact and indeed show that cohabitations are much more unstable than marriages.}
+
+\subsection{Facts}\label{subsection:facts}
+This subsection presents evidence that mating behavior differs significantly by education. Despite the fact that the sociological and demographic literature have already provided some evidence that serial cohabitation is more commonly observed among the least educated (\cite{bumpass2000}, \cite{lichter2010} and \cite{perelli2016}), I present these differences also in this paper. I do that for two reasons: first, to be sure that the same patterns apply to my recent data. Second, to make a distinction between the partnership choices of singles versus the likelihood that cohabitants transition into marriage. Note that throughout the section I refer to Sample I when the spells of interest are constructed using all respondents in the NLSY97, counting as censored observations that leave the sample, or for which marital history is not available, while Sample II is the one I already described above.
+
+
+Before presenting the results, I briefly describe the duration models that I use in this subsection. The Cox proportional hazard model \citep{cox1972} relates some covariates to the hazard rate, defined as the rate at which the event of interest is realized at time $t$, conditional on not having happened until that moment. The unit of observation is a spell, defined as the period of time spent in a particular state (i.e. marriage and singleness). The Cox regression assumes that covariates $\bold{X}$, together with the vector of parameters $\beta$, shift proportionally the baseline hazard $\lambda_0(t)$, which captures unobserved heterogeneity. Formally
+\begin{equation}\label{eq:eqCox}
+\lambda(t|X_i)=\lambda_0(t) \exp(\bold{X}_i\beta),
+\end{equation}
+where $\lambda$ is the hazard. I use this model because it controls for right censoring, avoiding the bias that would arise from considering some observations as having a low risk just because they were observed for fewer periods. Since the Cox regression is not convenient when individuals face additional types of risk,\footnote{When analyzing multiple risks with a Cox regression, the competing event is treated as if it was right censoring, which implicitly assumes that the main and the competing event are independent. This implies that independence of irrelevant alternatives is also assumed to hold.} called competing events, I use the Fine-Gray regression \citep{fine1999}. This model is represented by Equation \ref{eq:eqCox}, which is the same as the Cox model with the difference that $\lambda(t|X_i)$ in this case is a so-called \textit{sub-hazard}, defined as the probability that the event of interest happens conditionally on having survived until that moment, while a competing event might already have happened.\footnote{This means that individuals who experienced the competing event are present in the risk set with diminishing weights, which allows to relax the assumption of independence of the competing event. While this characteristic seems unnatural, \cite{putter2020} shows that the same parameters as the Fine-Gray regression can be obtained fitting a Cox regression corrected with a reduction factor. This is defined as the share of spells in the Fine–Gray risk set that has not yet experienced a competing event.} This model will be used when the unit of analysis is a singleness or cohabitation spell, since in these cases the competing risks are cohabitation vs. marriage and marriage vs. breakup,  respectively.\\
+
+\noindent\textbf{Fact 1}:\textit{ Among singles, college graduates are less likely to cohabit than non-graduates.}
+
+I study partnership choices of singles using the duration model by  \citet{fine1999}. The units of analysis are singleness spells,\footnote{These spells include both people that never experienced a relationship as well as those who are divorced and experienced a breakup.} while the events of interest are cohabitation and marriage.\footnote{Note that if a person decides to cohabit and subsequently marries the same partner, it will be counted as cohabitation: I analyze the transition from cohabitation to marriage afterwards.} I control for several individual characteristics, including religiosity and and number of past relationships: online appendix \ref{subsection:duration} has a complete list of the controls.  In table \ref{table:singtrans4} below I report the results of a regression where cohabitation is the event of interest and marriage is the competing event. In all specifications, being a college graduate decreases the probability that spells of singleness end up in cohabitation. Column (1) includes just $College$ as an explanatory variable, while (2) includes all controls except those related to children, and column (3) includes all controls. In columns (4), (5) and (6) I use the same specifications as (1), (2) and (3) using Sample II instead of Sample I. The magnitude of the effect is similar among all specifications and samples: the sub-hazard ratio of being a college graduate ranges between 0.54 and 0.74.\footnote{The sub-hazard ratios associated with the other covariates are reported in table \ref{table:singtranstot2} of the online appendix.}
+{\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{3}{l}}
+	\begin{table}[h!]\centering\scriptsize 
+		\caption{---\citet{fine1999} duration model. Observations: singleness spells.}
+		\label{table:singtrans4}
+		\begin{threeparttable}[t]\centering\scriptsize 
+			\input{singtrans4}
+	\end{tabular}}	
+	\begin{tablenotes}
+	\scriptsize {\item \textsc{Notes}: The results are displayed in terms of relative sub-hazard ratios. A sub-hazard is defined as the probability that the event of interest happens conditionally on not having occurred already, while a competing event might already have happened. When the ratio is larger than 1, it means that the covariate increases the likelihood that the event occurs. The composition of samples I and II is described in the text. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+	\end{tablenotes}
+\end{threeparttable}
+\end{table}}
+\FloatBarrier
+Again in table \ref{table:singtrans4} I use the same econometric model, covariates and samples to study the risk of marriage, treating cohabitation as a competing risk. The results show that college graduates are more likely to end up marrying, but the differences are small (SHR$\leq$1.15) when controls are introduced and they are not significant in columns (5) and (6). Note that results are not statistically different when using the two samples.\footnote{Full results, showing the effect of each variable, can be found in table \ref{table:singtranstot} of the online appendix.}
+Overall, my results show that college graduates, when single, are less likely to end up cohabiting, while the likelihood of marrying is similar to that of those with fewer years of education. Note that these results prove that college graduates are less likely to choose cohabitation over marriage when they are single, but this does not automatically imply that they marry more and cohabit less overall. It could be that college graduates never transit from cohabitation to marriage, while non-graduates do it frequently. The next stylized fact will rule out this possibility.\\
+
+
+\noindent\textbf{Fact 2}:\textit{ Among cohabitors, college graduates are more likely marry than non-graduates.}
+
+ Another interesting difference in the mating behavior by education is the likelihood of transitioning from one partnership to the other, because it can signals whether the partnership is considered to be permanent or temporary. While I do not observe in my sample people who transitioned from marriage to cohabitation with the same person, the opposite is quite common: 35\% of cohabiting couples end up marrying.
+ An interesting feature of the data is that the probability of transitioning from cohabitation to marriage is more frequent among college graduates than those with fewer years of education.
+ To show whether this difference is statistically significant, I use again the 
+ \cite{fine1999} regression. This time the unit of analysis is a cohabitation spell, while the event I am interested in is marriage, and the competing risk is breaking up. The results are shown in table \ref{table:Coxtrans}: in all specifications I find that the sub-hazard of marriage is larger for college graduates,\footnote{For the full list of controls see table \ref{table:Coxtranstot} of the online appendix.} also after controlling for a number of covariates. Column (1) includes just $College$ as an explanatory variable, column (2) includes all controls except those related to children, while column (3) includes all controls. In columns (4), (5) and (6) I use the same specifications as (1), (2) and (3), using Sample II instead of Sample I. The magnitude of the effect is similar among all specifications and samples: the sub-hazard ratio of being a college graduate ranges between 1.52 and 1.91. These results are consistent with the story that college graduates use cohabitation as a trial for marriage and therefore experience a transition from cohabitation to marriage more often.
+{\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{3}{l}}
+	\begin{table}[h!]\centering		\scriptsize 		
+		\caption{---\citet{fine1999} regression. Observations: cohabitation spells
+		}\label{table:Coxtrans}
+		 \begin{threeparttable}[t]\scriptsize 	
+		\input{Coxtrans}
+		\end{tabular}}
+	                      \begin{tablenotes}
+		\scriptsize {\item \textsc{Notes}: The results are displayed in terms of relative sub-hazard ratios. A sub-hazard is defined as the probability that the event of interest happens conditionally on not having occurred already, while a competing event might already have happened. When the ratio is larger than 1, it means that the covariate increases the likelihood that the event occurs. The composition of samples I and II is described in the text. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+                      \end{tablenotes}
+                \end{threeparttable}
+	\end{table}}
+\FloatBarrier
+In section \ref{subsection:duration} of the online appendix I propose a robustness check using a multinomial logit with spell-month observations.
+%In subsection \ref{subsection:duration} I propose a robustness check for the facts of this section using a Bayesian multinomial probit \citep{imai2005a} with spell-month observations. This tool, while not standard in the medical and demographic literature, has the advantage of not relying on any proportionality assumptions, it takes into account the discrete nature of duration, and it allows to model attrition, which is considered as an additional competing risk. While the magnitude of the results are not directly comparable\footnote{The Fine and Gray regression allows to estimate sub-hazard ratios, while with the multinomial probit I can estimate the average hazard ratios.} with the Fine and Gray regression, the direction of the association between covariates and the risk of interest are comparable. I find that the association between being a college graduate and all the risks of interest are the same in the two models.
+\subsection{The Extensive and Intensive Margins of Cohabitation}
+In this subsection I provide evidence that learning explains mating behavior. \citet{jovanovic1979} builds a model where employers and employees learn about the quality of their match and concludes that the hazard rate of breakup is first increasing and then decreasing over time. The rationale for this result is that agents wait before splitting, since they are not sure of the the match quality, which is learned over time. The hazard rate starts decreasing at a certain moment because of a self-selection effect: the relationships that have not broken up yet are the ones with the best match quality. The presence or absence of this pattern in the data has been used also in the marriage and divorce literature (see for example \cite{brien2006} and \cite{marinescu2016}) as evidence, or lack thereof, of learning. As figure \ref{fig:hazard} illustrates, for my sample the hazard of divorce is first increasing and then decreasing over marriage duration.
+\begin{figure}[h!]
+	\centering
+	\caption{---Hazard of divorce by duration}
+	\label{fig:hazard}
+	\hspace*{-1.1cm} 
+	\resizebox{0.9\textwidth}{!}{\input{hazd_data.pgf}}
+	\begin{minipage}{0.99\textwidth} % choose width suitably
+		
+		\hspace{30em}
+		
+		{\scriptsize  \textsc{Notes.}  The hazard rate for each marriage year $t$ is computed as the probability that a marriage ends in divorce in interval $t$, conditional on not having divorced until $t$.\par}
+	\end{minipage}
+\end{figure}
+ It can still be that the shape of the hazard over time can also be driven by a composition effect.\footnote{Different distributions of people's characteristics linked to divorce can give rise to different shapes of the hazard of divorce over time.} Hence, I collect additional evidence about learning. It there is learning, I expect longer periods of premarital cohabitation (intensive margin of cohabitation) to decrease the hazard of divorce. On the other hand, it might be that better matched partners marry directly, without the need to cohabit (intensive margin of cohabitation) before: for a selection effect I might expect those people to have a lower hazard of divorce. I study the relative role of these margins estimating the following Cox regression model, capturing the extensive margin of cohabitation with a dummy taking value one if there was premarital cohabitation and $\log(\text{Cohabitation length}+\epsilon)$ to capture the intensive margin,\footnote{I use the log of cohabitation to capture a diminishing learning rate over time. $\epsilon$ is a small number that allows me to avoid dropping observations that did not cohabit in the sample.} where $\epsilon$ is a very small number. Table \ref{tabresult Cox} shows the results of the estimation: in (1) and (4) I kept just the cohabitation variables, while in (2) and (5) I introduced a number of individual and marriage specific controls.\footnote{A complete list of the controls is available in table \ref{tabresult Cox_tot} of the online appendix.} Finally, models (3) and (6) also contain children controls. Models (1), (2) and (3) differ from (4), (5) and (6) in the use Sample I and II, as defined above. I clearly see that in all specifications the extensive margin of cohabitation increases the risk of divorce, while the intensive margin reduces it. In order to provide a visualization of the overall effect, I plot in figure \ref{fig:cohabitationeffect} the predicted risk of divorce given a certain number of years of cohabitation, relative to the risk of divorce of marriages with no previous cohabitation.
+\begin{figure}[h!]
+	\centering
+	\caption{---Relative hazard of divorce by premarital cohab. duration}
+	\label{fig:cohabitationeffect}
+	\hspace*{-1.1cm} 
+	\resizebox{0.9\textwidth}{!}{\input{cohrel.pgf}}
+	\begin{minipage}{0.99\textwidth} % choose width suitably
+		
+		\hspace{30em}
+		
+		{\scriptsize \textsc{Notes.}  The line \textit{Model Prediction} shows the effect of cohabitation on the hazard of divorce as derived from model (3) in table \ref{tabresult Cox}: couples that did not cohabit are taken as the reference. \textit{Raw Data} represents the relative share of divorces by premarital cohabitation duration.\par}
+	\end{minipage}
+\end{figure}
+  {	
+	\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{3}{l}}
+	\begin{table}[h!]\scriptsize	 	\centering				
+		\caption{---Cox regression model. Observations: marriage spells
+		}\label{tabresult Cox}
+		\begin{threeparttable}[h!]\scriptsize 	
+			\input{Coxdiv}
+	\end{tabular}}
+	\begin{tablenotes}
+		\scriptsize {\item \textsc{Notes}: The results are displayed in terms of relative risk. For instance, if the number next to the variable \textit{College} is $\alpha$, it means being a college graduate have a risk of marriage which is $\alpha$\% of the risk of the rest of the population. Standard errors are clustered at the individual level. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+	\end{tablenotes}
+\end{threeparttable}
+\end{table}}
+\FloatBarrier
+When premarital cohabitation increases, the hazard of divorce first increases and then decreases slowly, suggesting that the initial adverse self-selection effect fades out as the number of years of premarital cohabitation increases. The same graph shows the raw probability of divorce given a certain cohabitation length. In section \ref{subsection:duration} of the online appendix I propose a robustness check using a logit with spell-month observations.
+\section{Theory}
+To identify the channels through which the mating strategies by education arise, I
+develop a dynamic life cycle model of partnership formation, female labor supply, home production and learning about match quality. Couples act cooperatively subject to limited commitment, which means that there might be renegotiations in response to changes in the outside options, which are assumed to be divorce or breakup. Time is discrete, and in each period men and women, who belong either to the college group $e$ or non college group $n$, draw their productivities. If single, with some probability they meet a potential partner: after drawing a match quality (which is imperfectly observed), modeled as a utility flow, they decide whether to marry, cohabit or to stay single. Couples draw productivity shocks and noisy observations of the match quality, and according to those, they decide whether to stay together or to split.
+Couples learn about match quality, making better predictions the longer they are in the relationship. Both singles and couples decide how to split their money between private consumption and public good expenditure. Couples also make female labor supply decisions and women's time can be used to produce public goods, but this comes at the cost of a loss in productivity.\footnote{I assume that single women and all men work full time.}
+\begin{figure}[h!]
+\label{fig:scheme}
+\caption{}
+\hspace{0.3cm}
+\resizebox{0.99\textwidth}{!}{\input{graph_transitions2.tex}}
+\begin{minipage}{0.99\textwidth} % choose width suitably
+\hspace{3em}
+{\footnotesize \textsc{Notes.}  The number of spells and the transitions are those in the main sample.\par}
+\end{minipage}
+\end{figure}
+\subsection{Preferences}
+Women $f$ and men $m$ derive utility from consuming a private good $c$ and a household public good $Q$. The public good can be interpreted in terms of both the quantity and quality of children, as well as the goods and services produced within the household, such as washing clothes or preparing meals. Preferences are separable in the two goods and across time. Agents also derive utility from match quality $\hat{\psi}_d$: in the next subsection I detail how it evolves over a couple's duration $d$. The intra-period utility of a single agent of gender $s$ is:
+\[u(c^{s}_t,Q^{s}_t)=\frac{{(c^s_t)}^{1-\sigma}}{1-\sigma}+\alpha\frac{{(Q^{s}_t})^{1-\sigma}}{1-\sigma}.\]
+Note that the utility derived from the public and the private goods has the same shape. The utility for an agent in a couple is:
+\[u^{C}(c^s_t,Q_t)=\frac{{(c^s_t)}^{1-\sigma}}{1-\sigma}+\alpha\frac{Q_t^{1-\sigma}}{1-\sigma}+\hat{\psi}_d,\]
+where the public good does not have a superscript because it is shared.
+\subsection{Match Quality}
+Agents in a relationship draw utility from a match quality shock $\hat{\psi}_d$, which can be interpreted as the utility value of companionship, and all the couple-specific attachment to the relationship.\footnote{For instance, concerns about the well-being of children or the psychological fear of ending alone, are part of the match quality. Interestingly, religiosity is captured by this variable, being higher for couples with a high match quality. In fact, the model predicts that for the same economic incentives, couples with a high match quality are more likely to marry than to cohabit, less likely to divorce and more likely to have a stay-at-home female partner. In the NLSY97 data, people that reported to be more religious share the same characteristics.} I now describe how match quality evolves over relationship duration $d$.\footnote{A couple transitioning from cohabitation to marriage continues its duration.} Two singles that just met draw their long run match quality $\psi$ from distribution $\mathcal{N}(0,\sigma^2)$. The potential couple only observe $\psi^f_1=\psi+\eta_1$, where the noise $\eta_1$ follows the distribution $\mathcal{N}(0,\sigma_\eta^2)$. Even in subsequent periods, couples observe $\psi^f_d=\psi+\eta_d$, where $\eta_d$ has the same distribution for all durations $d$. While $\psi$ is never observed directly, couples know this structure and can use past realizations to make a better prediction of match quality tomorrow. I assume that agents use information efficiently, forming their beliefs through Bayesian learning. From these assumptions, it follows that beliefs are normally distributed,\footnote{When I refer to beliefs of match quality at duration $d$, I mean after $\eta_d$ has been observed.} with a variance $\hat{\sigma}_d^2$ that depends on duration $d$ only, while the mean $\hat{\psi}_d$ depends on past realizations. I can write the recursion of the expectations for $d>1$:
+\begin{equation}\label{eq:kalman}
+\begin{cases}
+\hat{\psi}_{d}=\hat{\psi}_{d-1}+ K_{d}(\psi^f_{d}-\hat{\psi}_{d-1})\\
+\hat{\sigma}_{d}^2=(1-K_{d})\hat{\sigma}_{d-1}^2\\
+K_{d}=\frac{\hat{\sigma}_{d-1}^2}{\hat{\sigma}_{d-1}^2+\sigma_{\eta}^2}.\\
+\end{cases}
+\end{equation}
+Note that $\hat{\psi}_1=K_1\psi^f_1$, $\hat{\psi}_1=(1-K_1)\sigma^2$, where $K_1=\sigma^2/(\sigma_\eta^2+\sigma^2)$, which follows from Bayesian learning and agents knowing the distribution of $\psi$. Note that $\mathcal{C}_d=[\hat{\psi}_d,d]$ is a sufficient statistic for forming the expectations for match quality in $d+1$. In line with \cite{brien2006} and \cite{marinescu2016}, I assume that agents gain utility from $\hat{\psi}_d$ and not ${\psi}^f_d$: it is enough to capture the fact that couple's predictions become more precise as relationship duration increases, while it saves one state variable. For computational reasons I also assume that agents stop improving their beliefs in $d=8$.
+ \subsection{Home Production}
+In my model each agent has one unit of time. I assume that singles and men in a couple supply inelastically a fraction $1-\phi$ of their time to the labor market, and produce home goods with the rest of their time.\footnote{The assumption that men, as opposed to women, always participate in the labor market is rather common in the literature \citep{ciscato2019,low2018,voena2015,reynoso2019} and it is made to simplify the solution of the model, which allows me to enrich it with other features. Moreover, this assumption is consistent with the fact that the large majority of men are in the labor force: only 8\% of men between 20 and 60 were out of the labor force in the 2000s.} Women in a couple can devote their whole time endowment to producing the home good $Q$. The public good can also be produced buying $x$ goods in the market. Following \cite{greenwood2016} I define the production function of home goods for singles of gender $s\in\{f,m\}$ as:
+\begin{equation}\label{eq:pfunctions}
+Q^s_t=[(x^s_t)^\nu+\chi {\phi}^\nu]^{\frac{1}{\nu}}, \text{ where }0<\nu<1,
+\end{equation}
+while for couples
+\begin{equation}\label{eq:pfunctionc}
+Q_t=[x_t^\nu+\chi {(2\phi+(1-P^f_t)(1-\phi))}^\nu]^{\frac{1}{\nu}}, \text{ where }0<\nu<1.
+\end{equation}
+The parameter $\nu$ captures the degree of substitutability between women's time and the use of durables in the production of home goods. This structure implies that when the relative price (here normalized to 1) of durables decreases and when wages go up, women spend less time producing household goods and their employment outside the home increases. The variable  $P^f_t$ is a dummy variable that that takes value $1$ when women are participating in the labor market.
+\subsection{Wages}
+The labor income for agents $s\in\{f,m\}$ and education $i\in\{e,n\}$ depends on their age $t$ and on a permanent income component $z^{s,i}_t$:
+\[\ln(w^s_t)=f^{s,i}_t+z^{s,i}_t,\]
+where $f^{s,i}_t$ is a gender and education specific function that captures the evolution of productivity over age. Hence, both the gender wage gap and the financial returns to education depend on it. The permanent income component  $z^{s,i}_t$ evolves over time according to:
+\begin{equation}\label{eq:pcomp}
+z^{s,i}_t=z^{s,i}_{t-1}-(1-P_t^{s,i}) \mu+\zeta^{s,i}_{t}\text{, where }\zeta^{s,i}_{t}\iidsim\mathcal{N}(0,\sigma_\zeta^{2_{s,i}})\text{, and }\zeta^{s,i}_{1}=z^{s,i}_{1}.
+\end{equation}
+Parameter $\mu$ is the loss in productivity that affects women who are not participating in the labor market.\footnote{Parameter $\mu$ can be interpreted as a reduced form way of capturing both the missed opportunity to accumulate human capital while working and the skill atrophy from interruptions \citep{adda2017}. It also captures the harsh economic situation that single mothers face: this corresponds to the situation where a wife divorces after having used her time to produce $Q$. It is very rare in the model that stay-at-home female partners switch to employment while the couple is intact. As I already anticipated, $P_t^{m,i}=1$.} Importantly, the variance of the persistent shock depends on gender and education: for some groups, risk-sharing might be more important than for others.
+ \subsection{Budget Constraints}
+Singles of gender $s\in\{f,m\}$ face the budget constraint:
+\begin{equation}\label{eq:bcs}
+w^s_t(1-\phi)=c^s_t+x^s_t,
+\end{equation}
+where $\phi$ is the fixed time singles spend to produce the public good and $w$ depends on gender, education, productivity shocks and age. Note that agents cannot save or borrow.\footnote{I abstract away from savings for three reasons. First, it allows me to keep the model computationally tractable while enriching it with learning about the match quality, which is important to understand cohabitation. Second, as \cite{wu2019} and \cite{blundell2016} point out, savings are not effective in self insuring against persistent income shocks compared to the role of the family for insurance. Moreover, as \cite{guvenen2015} mention, the median liquid wealth of US households is less than $\$5,000$ and even less for young individuals, when most of the decisions regarding family formation and dissolution are taken. Third, while \cite{lafortune2020} show that assets can act as a commitment technology to enforce cooperation in the family, in my model the monetary cost of divorce proportional to income plays a similar role.} An agent that just divorced receives a one-shot loss in her disposable income, being left with a fraction $\kappa$ of her wage.\footnote{This assumption is consistent with the evidence that upon divorce wealthier people lose more asset \citep{blasutto2020} and that high income households in the UK experience more persistent losses in their standards of living \citep{fisher2016}.} 
+The budget constraint for a couple is
+\begin{equation}\label{eq:bcm}
+w^{m}_t(1-\phi)+w^{f}_tP^f_t(1-\phi)=c^{m}_t+c^{f}_t+x_t.
+\end{equation}
+\subsection{Problem of the Singles and Divorcees}
+I start by describing the problem for a single agent of gender $s\in\{f,m\}$ and education $i\in\{e,n\}$ in $t$. In $t+1$ they meet a potential partner with probability $\lambda^i_{t+1}$ and they can decide to enter a partnership, which also depends on whether the potential partner will agree. If the two decide to marry, the variable $M_{t+1}$ will take value 1, while $C_{t+1}=1$ if the couple decides to cohabit. Otherwise, $M_{t+1}$ and $C_{t+1}$ will be equal to 0. The state variable of a single is $\omega^s_t=\{i,z_t\}$, while their choices are represented by the vector $\mathbf{q}_t=\{c_t,x_t,C_t,M_t\}$. I denote by $V_t^{S_s}(\omega^s_t)$ the value of being single and not entering in a relationship in $t$ as
+\begin{equation}\label{eq:v_single}
+\begin{split}
+V_t^{S_s}(\omega^s_t)=&\max_{\mathbf{q}_t} u(c_t,Q_t)+\beta E_t \bigg\{(1-\lambda^i_{t+1})V^{S_s}_{t+1}(\omega^s_{t+1})+\\ & \quad\quad \lambda^i_{t+1}\big\{(1-M_{t+1})(1-C_{t+1})	V^{S_s}_{t+1}(\omega^s_{t+1})+\\ &\quad\quad\quad\quad M_{t+1} V^{M}_{t+1}(\Omega_{t+1})+ C_{t+1} V^{C}_{t+1}(\Omega_{t+1}) \big\}\bigg\},
+\\ &\text{s.t. budget constraint \eqref{eq:bcs} and \eqref{eq:pfunctions}.} 
+\end{split}
+\end{equation}
+The value function of the divorcee $V_t^{D_s}$ is the same as that for singles, with the exception that in $t$ only the agent is left with a fraction $\kappa$ of their income. The vector of state variables $\Omega$ of couples is defined in the next subsection.
+\subsection{Marriage}
+Married couples maximize the weighted sum of the spouses' utilities under the constraint that both of them are better-off staying married as opposed to divorcing. This constraint implies that the Pareto weights of the wife $\theta^f_t$ and of the husband $\theta^m_t$ are allowed to vary over time to meet the participation constraints. The state vector of this problem is $\Omega_t=\{i^f,i^m,z^f_t,z^m_t,d,\hat{\psi}_d,\theta^f_t,\theta^m_t\}$, where $i^f$ and $i^m$ are the education levels of the wife and of the husband, respectively. The variables over which the couple maximizes are summarized by the vector $\mathbf{q}^M_t=\{x_t,c^f_t,c^m_t,P_t,D_t\}$, where $D_t$ is a dummy variable indicating that the couple chose to divorce. The formal problem solved by a couple entering $t$ as married is:
+\begin{equation}\label{eq:v_uni}
+\begin{split}
+V_t^{M}(\Omega_t)=&\max_{\mathbf{q}^M_t} (1-D_t)\{\theta^f_{t}u(c^f_t,Q_t)+\theta^m_{t} u(c^m_t,Q_t)+\hat{\psi}_d+\beta E_t V^{M}_{t+1}(\Omega_{t+1})\}\\ &\quad\quad+D_t \{\theta^f_{t}V^{D_f}_{t}(\omega^{f}_{t})+\theta^m_{t} V^{D_m}_{t}(\omega^{m}_{t}))\}
+\\ &\text{if $D_t=0$:}\hspace{35pt}\text{s.t. budget constraint \eqref{eq:bcm} and \eqref{eq:pfunctionc},}\\ &\hspace{80pt}
+\theta^f_{t+1}=\theta^f_{t}+\mu^f_t,\\ &\hspace{80pt}
+\theta^m_{t+1}=\theta^m_{t}+\mu^m_t,
+\\ &\text{if $D_t=1$:}\hspace{35pt}\text{s.t. $w^s_t\kappa(1-\phi)=c^s_t+x^s_t$, \eqref{eq:pfunctionc} for $s\in\{f,m\}$,}
+\end{split}
+\end{equation}
+where $\theta^f_{t+1}$ and $\theta^m_{t+1}$ adjust such that the following participation constraints are satisfied:
+\begin{equation}\label{eq:p_cons_mar}
+\begin{split}
+&
+W^{M_f}_{t}(\Omega^{M}_{t})\geq V_{t}^{D_f}(\omega^f_{t}),\\ &
+W^{M_m}_{t}(\Omega^{M}_{t})\geq V_{t}^{D_m}(\omega^m_{t}). 
+\end{split}
+\end{equation}
+Note that $\mu^i_t$ are the Lagrange multipliers associated with the spouses' participation constraints. The individuals' value of marriage, conditional on $D_t=0$, is  $W_{t}^{M_s}$ for $s\in\{f,m\}$, is defined as 
+\begin{equation}
+W_{t}^{M_s}=u(\tilde{c}_t^{i},\tilde{Q}_t)+\hat{\psi}_d+\beta E_t V_{t+1}^{M_s}(\Omega_{t+1}),
+\end{equation}
+where
+$\mathbf{\tilde{q}}^{M}_t=\{\tilde{x}_{t},\tilde{c}^{m}_{t},\tilde{c}^{f}_{t},\tilde{P}_t\}$ is the $\argmax$ of problem \eqref{eq:v_uni} conditional on having chosen $D_t=0$. $V_{t+1}^{M_s}(\Omega_{t+1})$ instead can be obtained by the expectation of the sum of the time utilities that the agent gets from $t+1$ to $T$, where the variables entering the utility function derive from the Pareto problem if the agent is in a relationship, otherwise they are the solution of \eqref{eq:v_single} accounting for the cost of divorce. Note that I follow the literature assuming that the planner evaluates the welfare of the two members of the couple if a divorce happens with the current Pareto weights.
+
+This formulation of the problem for spouses implies that Pareto weights stay constant as soon as both spouses are better-off in marriage with the current Pareto weights. Instead, when one participation constraint is binding, her Pareto weight increases by $\mu_t^s$, the smallest value such that a person is willing to stay married. In this case, the allocation corresponds to the solution of the above Pareto with the modified weights. Instead, when for any value of $\mu_t^s$ participations constraints are not met, divorce happens. Note that each time the martial contract is rebargained, the solution departs from the Pareto optimal allocation, making consumption more volatile and hence reducing the strength of risk-sharing. The fact that spouses cannot commit not to divorce also influences specialization within the couple. In fact, it might happen that the efficient solution entails full specialization in home production for women, but the actual allocation is such that both spouses work on the market. This can happen because the wife fears a future divorce and would have lower future productivity if she stays at home now. The husband cannot compensate her because utility is not perfectly transferable. 
+\subsection{Cohabitation}
+The problem of cohabiting couples is similar to those who are married, but it departs from it because the choice set $\mathbf{q}^C_t=\{x_t,c^f_t,c^m_t,P_t,D_t,M_t\}$ includes the possibility of marriage and most importantly because the outside option is not divorce but breakup, which coincides with becoming single again.\footnote{If I included the possibility for married couples to cohabit, this choice would never be taken. This happens because the cost of divorce creates a wedge between the match quality threshold of divorce and that of singleness, with the latter being always larger.}
+
+The fact that breakup is costless has important implications for the utility gains of cohabitation.\footnote{What really matters for the choice between marriage and cohabitation is the difference between the cost of divorce and of breakup. I tried to estimate the model with a cost of breakup but it was not well identified and very small.} In fact, outside options bind more frequently for cohabiting couples and breakup is more likely, making both risk-sharing and specialization in home production less functional. Even if the allocation within cohabitation departs from the efficient allocation more often than it does for marriage, the low cost of breakup makes it the preferred relationship for those that would be at high risk of couple disruption, as a couple with a low match quality. Even more interestingly, learning about the match quality can make cohabiting before eventually marrying the best strategy, as the uncertainty around match quality decreases with the duration of the relationship. This means that couples not only learn about the gains of being in together, but also about the surplus of marriage with respect to cohabitation, which depends crucially on match quality.
+\subsection{Partnership Choice and the Mating Market}\label{ssec:marriage_market}
+In each period $t$ singles have some probability of meeting a potential partner. I assume that the productivity and the education of the prospective partner depends on agents' characteristics.\footnote{Alternatively, I could have obtained the same level of assortative mating by education assuming random meeting probabilities and that the couple receives an additional utility flow based on her and her partner's education.} Precisely, the probability $p_s^{i,i}$ that agents of gender $s$ meets someone with their same education $i$ is 
+\begin{equation}\label{eq:mma}
+p_s^{i,i}=\alpha_{edu}+(1-\alpha_{edu}) \text{Share}_{s*}^i,
+\end{equation}
+where $ \text{Share}_{s*}^i$ is the share of agents of the opposite gender having education $i$. Instead, the productivity of the potential partner $z_t^p$ is
+\begin{equation}\label{eq:mmz}
+z_t^p=f(\overline{z}^{s^*,i^*}_t,z^r_t,\epsilon),
+\end{equation}
+where $\overline{z}^{s^*,i^*}_t$ is a number representing the average productivity of singles of gender $s^*$ and education $i^*$ in $t$, $z^r_t$ is the productivity of the agent net of the gender and education specific trend,\footnote{This value is taken from the PSID.} while $\epsilon$ is a normally distributed shock. These assumptions capture in a reduced form fashion the fact that people are mating assortatively.\footnote{In the life cycle models featured in \cite{ciscato2019}, \cite{shephard2019} and \cite{reynoso2019} assortative mating arises in marriage markets through the interactions of preferences, incentives, supply and demand forces.}
+Once the meeting happens, agents have to decide whether to stay in a couple, which partnership contract to choose and they have to pick a Pareto weight. Following \cite{mazzocco2007}, the initial Pareto weight is set through symmetric Nash bargaining, where the threat points are the utilities of staying single. The choice between marriage and cohabitation is resolved by picking the relationship that delivers the largest Nash product.
+\section{Estimation}
+I estimate the structural model using a two-step procedure. The first step is to set a subsample of the parameters either following the literature or by matching some features of the data without simulating the model. This is the case of labor income processes of men and women by education. Estimating labor income processes outside the model is common in the literature because it reduces the burden on the structural estimation.\footnote{See for example \cite{voena2015}, \cite{reynoso2019} and \cite{gourinchas2002}.} The second step is estimating the remaining structural parameters with the method of simulated moments. In this section I describe every step of the estimation, I discuss the identification of the structural parameters and present the results.
+\subsection{Income Processes}
+I estimate the income processes using the $1997$-$2017$ waves of the core PSID sample, including men and women aged between 20 and 65.\footnote{I retain men who are household heads and women who are either household heads or married.} For both men and women I compute the hourly wage rate by dividing the annual labor income by the number of yearly working hours supplied. In this way I avoid considering a variation in working hours as a productivity shock. This correction is particularly relevant for the estimation of women's income process, as the variance of hours worked per year is considerably larger than that of men. I drop individuals whose hourly wage is less than half of the minimum wage in some periods, as in \cite{low2018}.
+
+For men $m$, I estimate the parameters of the following model separately for college graduates $e$ and not college graduates $n$:
+\begin{equation}\label{eq:male_earn}
+\ln(w^{m,i}_{j,t,st,sur})=\iota^{m,i}_0+\iota^{m,i}_1*t+\iota^{m,i}_2*t^2+\iota^{m,i}_3*t^3+\delta_s+\nu_{sur}+u_{j,t,st,sur}^{m,i},
+\end{equation}
+where $j$ stands for individual, $t$ is age, $i$ for education, $st$ for state and survey year is $sur$. Moreover, $u_{j,t,st,sur}^{m,i}=z_t^{m,i}+e^{m,i}_{j,t,st,sur}$, where $z_t^{m,i}$ follows equation ($\ref{eq:pcomp}$), while $e^{m,i}_{j,t,st,sur}$ is the measurement error. $\delta_s$ are state fixed effects and $\nu_{sur}$ are year of the survey fixed effects. I use the estimated age-related coefficients and the intercept to build the trends in productivity by age and education in the model. I then use the regression residuals $\hat{u}_{t}^{m,i}$ to estimate through GMM the variance of the permanent components of income $\sigma_\zeta^{2_{m,i}}$ and one of the measurement errors $\sigma_e^{2_{m,i}}$ using the following conditions:
+\begin{equation}\label{eq:male_gmm}
+\begin{split}
+E((\Delta\hat{u}_{t}^{m,i})^2)&=2\sigma_\zeta^{2_{m,i}}+2\sigma_e^{2_{m,i}}\\
+E(\Delta\hat{u}_{t}^{m,i}\Delta\hat{u}_{t-2}^{m,i})&=-\sigma_e^{2_{m,i}}
+\end{split}
+\end{equation}
+Note that $\Delta u_t=u_t-u_{t-2}$. I am obliged to use two years differences because of a data constraint: the PSID collected information every two years after the 1997. Results are reported in table \ref{table:income_params}.
+
+The estimation of women's labor earning differs from the men's one since I need to take into account the endogeneity of female labor force participation. I do so by using a Heckman selection correction procedure. Female labor earnings of individual $j$ with education $i$, age $t$,\footnote{Age is made consistent with the model.} from state $st$  in survey year $sur$ follows the equation:
+\begin{equation}\label{eq:femae_earn}
+\ln(w^{f,i}_{j,t,st,sur})=\iota^{f,i}_0+\iota^{f,i}_1*t+\iota^{f,i}_2*t^2+\mathbf{X}_{j,t,st,sur}\beta+\delta_s+\nu_{sur}+u_{j,t,st,sur}^{f,i},
+\end{equation}
+where $u_{j,t,st,sur}^{f,i}=z_t^{f,i}+e^{f,i}_{j,t,st,sur}$. $z_t^{f,i}$ follows equation ($\ref{eq:pcomp}$), while $e^{f,i}_{j,t,st,sur}$ is the measurement error.  $\mathbf{X}_{j,t,st,sur}$ are demographic controls, which include the marital status and dummies for the number of children under 18 in the family unit. I observe women's wages only if they participate in the labor market, which happens if
+\begin{equation}\label{eq:femae_part}
+\mathbf{Z}_{j,t,st,sur}\gamma+\pi_{j,t,st,sur}>0,
+\end{equation}
+where $\mathbf{Z}_{j,t,st,sur}$ includes all the regressors in equation (\ref{eq:femae_earn}), plus a dummy indicating whether the household contracted a mortgage. Following \cite{blundell2016}, this last variable is used as an exclusion restriction for women's labor force participation: \cite{del2003} find a significant impact of mortgages on women's participation in the labor market. The first stages of the two-step Heckman selection model, reported in tables of the online appendix \ref{table:prb_wome} and \ref{table:prb_womn} for women with and without college respectively, shows the strength of the instrument. In the second step, I estimate equation \ref{eq:femae_part} to obtain the age profiles of women's wages, controlling for the inverse of the Mills ratio of the prediction obtained from the first step. Finally, I use the regression residuals from the second step $\hat{u}_{t}^{f,i}$  to estimate the variance of the permanent component of income $\sigma_\zeta^{2_{f,i}}$ and that of the measurement error $\sigma_e^{2_f}$ through GMM, using the following conditions:\footnote{The conditions are those used by \cite{low2018}.}
+\begin{equation}\label{eq:female_gmm}
+\begin{split}
+&E(\Delta\hat{u}_{t}^{f,i} | P^{f,i}_t=1,P^{f,i}_{t-2}=1)=\sigma_\pi^{f,i}\frac{\phi(\tau_t)}{1-\Phi(\tau_t)},\\
+&E(\Delta(\hat{u}_{t}^{f,i})^2 | P^{f,i}_t=1,P^{f,i}_{t-2}=1)=2 \sigma_\zeta^{2_f}+\sigma_\pi^{2_{f,i}}\tau_t\frac{\phi(\tau_t)}{1-\Phi(\tau_t)}+2\sigma_e^{2_{f,i}},\\
+&E(\Delta\hat{u}_{t}^{f,i}\Delta\hat{u}_{t-2}^{f,i} | P^{f,i}_t=1,P^{f,i}_{t-2}=1,P^{f,i}_{t-4}=1))=-\sigma_e^{2_{f,i}},
+\end{split}
+\end{equation}
+where $\phi()$ and $\Phi()$ stand for the density and the distribution function of a standardized normal  respectively, while  $\tau_t=-\mathbf{Z}_{j,t,st,sur}\gamma$. The results are displayed in table \ref{table:income_params}. It is interesting to notice that the variance of the permanent income shock is larger for college graduates, both for men and women. This result is consistent with previous research by \cite{blundell2008}, \cite{meghir2004} and \cite{hong2019}, who also find a larger variance of the permanent component of income for college graduate men. Instead, the shocks for men are slightly larger than those for women. The variances of income in $t=1$ are taken directly from the data. Finally, note that the innovations in the idiosyncratic productivity processes are not correlated within the household.\footnote{The results are robust towards assuming a correlation of the shocks of 0.15, a value used by \cite{heathcote2010}. In fact, the ratio of college over non college ever married at 35 is 1.13 in the main version of the model and 1.15 in the robustness, while the ratio of college over non-college that ever cohabited at 35 is 0.86 in the main version of the model and 0.73 in the robustness. The main reason why I assume a correlation of the shocks of 0.0 is that it allows to discretize the persistent shocks following the generalization of Rouwenhorst's method to non-stationary AR(1) processes described in \cite{fella2019}.}
+\begin{table}[h!]\footnotesize 
+\caption{---Parameters of the income processes} % title of Table
+\label{table:income_params}
+\centering % used for centering table
+\begin{threeparttable}\footnotesize
+\begin{tabular}{@{\extracolsep{5pt}}lccc}   % centered columns (4 columns)
+\hline \hline%inserts single line
+\rule{-4pt}{2.5ex}
+Parameter & Symbol  & Value \\ [0.15ex] % inserts table
+\hline
+\rule{-4pt}{2.5ex}
+Variance of $f$'s permanent income shock---college & 
+$\sigma_\zeta^{2_{f,e}}$             & 0.0261  & \\[0.15ex]
+Variance of $m$'s permanent income shock---college & $\sigma_\zeta^{2_{m,e}}$             & 0.0321  & \\[0.15ex]
+Variance of $f$'s permanent income shock---no college & 
+$\sigma_\zeta^{2_{f,n}}$             & 0.0149  & \\[0.15ex]
+Variance of $m$'s permanent income shock---no college & $\sigma_\zeta^{2_{m,n}}$             & 0.0271  & \\[0.15ex]
+\hline
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+ \subsection{Preset Parameters}
+ This section describes how I choose the parameters that are set externally from the model.  Each period in the model lasts one year: I chose this length balancing the benefits of having a short period, which fits the fact that cohabitation spells are particularly short, and the computational burden associated with having too many periods. I assume that male and female agents start making decisions at age $20$ and $18$ respectively,\footnote{Couples such that men are always 2 years older than female. This is also the median age difference between partners in the NLSY97.} while they retire at 65 and die with probability $1$ at ages $82$ for men and $80$ for women.\footnote{I also assume that agents cannot divorce nor renegotiate the marital contract after retirement. This assumption is taken to make the model solution faster.} The relative risk aversion $\gamma$ and the discount factor $\beta$ are set to 1.5 and 0.98 to match those in \cite{attanasio2008}. Recall that I imposed the shape of the utility functions for the private and public good to have the same shape, since do not have the data that could identify the shape of the utility for public goods. Instead, the parameters relative to the production of public goods, $\nu$ and $\kappa$ are those in \cite{mcgrattan1997}. As far as pensions are concerned, I follow \cite{heathcote2010}, which mimics the progressivity of the US system with the difference that the amount of retirement income depends on wages in the period before retirement only. The parameter $\phi$ is fixed to $0.196$ to reflect the average time spent on housework relative to time spent working in the market.\footnote{By setting the work week to 40 hours as in \cite{greenwood2016}, and by using the average number of hours spent on housework in my PSID sample, which is 9.76, I get $\phi$=9.76/(40+9.76). The actual average working hours for people older than 25 in the NLSY97 are 39.6 for women, 45.3 for men, while the respective median values are 40 and 42.}
+ 
+   The parameters regarding the mating market, contained in equations (\ref{eq:mma}) and (\ref{eq:mmz}), are pinned down to obtain a realistic degree of assortative mating with respect to wages and education. I decided to set these parameters before the structural estimation because individuals are not very ``picky" with respect to these two dimensions and hence even varying considerably the deep parameters does not translate to sensibly different outcomes for the mating market.\footnote{This happens because, for reasonable values of the deep parameters, refusing a partner because she has a low wage it is very costly, since it implies waiting one or more periods without sharing the public good.}
+  \begin{table}[h!]\footnotesize
+ 	\caption{---Preset parameters} % title of Table
+ 	\label{table:preset_params}
+ 	\centering % used for centering table
+ 	\begin{threeparttable}\footnotesize
+ 		\begin{tabular}{@{\extracolsep{5pt}}lccc}   % centered columns (4 columns)
+ 			\hline \hline 
+ 			\rule{-4pt}{2.5ex}
+ 			Estimated Parameters & Symbol & Value & Source  \\ [0.15ex] % inserts table
+ 			\hline
+ 			\rule{-4pt}{2.5ex}
+ 			Initial age              &          & 18-20  &  \\[0.15ex]
+ 			Retirement age           &    $T_R$      & 65  &  \\[0.15ex]
+ 			Age at death             &     $T$     & 80-82  &  \\[0.15ex]
+ 			Years per period         &          & 1  &  \\[0.15ex]
+ 			Mating market---wages     &       &  & PSID \\[0.15ex]
+ 			Mating market---education      &    $\alpha_{edu}$   & 0.53  & NLSY97 \\[0.15ex]
+ 			Pensions system     &       &  &  \cite{heathcote2010} \\[0.15ex]
+ 			Fixed non working hours      & $\phi$      & 0.196 & PSID Hours \\[0.15ex]
+ 			Relarive Risk Aversion   &$\gamma$  & 1.5 &\cite{attanasio2008}  \\[0.15ex]
+ 			Discount factor          &$\beta$   & 0.98&\cite{attanasio2008}  \\[0.15ex]
+ 			\hline \hline
+ 			\rule{-4pt}{2.5ex}
+ 			Function &Symbol & Value & Source  \\ [0.15ex] % inserts table
+ 			\hline 
+ 			$Q_t=[x_t^\nu+\chi {(\text{Home prod. time})}^\nu]^{\frac{1}{\nu}}$& 
+ 			\begin{tabular}{@{}c@{}}$\chi$ \\[0.15ex] $\nu$\end{tabular} &\begin{tabular}{@{}c@{}}3.76 \\[0.15ex] 0.19\end{tabular}  &  \begin{tabular}{@{}c@{}} \cite{mcgrattan1997} \\[0.15ex] \cite{mcgrattan1997}\end{tabular}  \\[0.95ex]
+ 			\hline
+ 		\end{tabular}
+ 	\end{threeparttable}
+ \end{table}
+  Concerning labor productivities, I target the correlation in wages in the PSID. Moreover, the process that generate partners' wages is chosen to respect symmetry: for instance, men in a relationship at age $t$ should have on average the same productivity regardless of being the person simulated for her whole life cycle, or being a partner of a woman who is simulated for her whole life cycle.\footnote{Agents in the simulated sample meet potential partners: the latter are followed only for the period they are in a relationship with the person in the sample. Figure \ref{fig:symmetry} of the online appendix shows that the average productivity and its variance by age are similar for ``simulated sample" and ``partner" agents.} I obtain a correlation in wages of 0.38 for married couples in the simulated sample, while the data value is 0.33. Regarding the assortative mating by education, I set $\alpha_{edu}=0.53$ and I get that the simulated correlation in the dummy variable \textit{college graduate} for partners is 0.44, while it is 0.41 in the data.
+    \subsection{Method of Simulated Moments}
+ I use the method of simulated moments \citep{mcfadden1989,pakes1989} to pin down the vector $\vartheta=(\alpha, \lambda_{e},\lambda_{n}, \sigma, \sigma_{\eta}, \kappa, \mu,)$ of the 7 remaining parameters of the model. I use 78 moments for the structural estimation, which capture the process of marriage and cohabitation creation and dissolution, as well as female labor supply.\footnote{I target female labor supply and not female labor participation since the period in the model is 1 year and in the data cohabitation often lasts less than that, making hard to impute participation for cohabiting couples. Instead, I assign the average working hours in months where the couple was married or cohabiting. Then, to be consistent with the model, I divide the resulting average working hours of a certain partnership with women of age $t$ by $1-\phi$.} More precisely, I include as targets the hazard of divorce (12), the hazard of breakup (6), the hazard of marriage (6), the share of people ever married over time (16), the share of people that ever cohabited over time (16), female labor supply for married (3) and cohabiting women (3) and the difference in non college graduates that have ever been in a relationship minus the share of college graduates that have ever been in a relationship,\footnote{By having been in a relationship I mean having cohabited, married or both.} by age (16). All the moments are computed using the NLSY97, namely the sample that I described in the empirical section. 
+ 
+ The first step for the estimation is to solve the model for a vector of parameters $\vartheta$, then simulating income and match quality shocks to obtain the behavior of 15000 fictional agents, which follows the same distribution over education, age, gender and censoring age as in the data. This allows me to construct simulated moments and to compare them with their empirical counterpart: the objective is to obtain $\vartheta$ such that this difference is as small as possible. Formally, the problem that I solve is
+ \begin{equation}\label{eq:msm}
+ \hat{\vartheta}=\arg\min_\vartheta \quad\quad (\mathbf{m}-\mathbf{m}_\vartheta)'\mathbf{W}(\mathbf{m}-\mathbf{m}_\vartheta),
+ \end{equation}
+ where $\mathbf{m}$ is the vector of empirical moments, as described in the section about target moments, while $\mathbf{m}_\vartheta$ is the vector of the moments simulated by the model parametrized with $\vartheta$. $\mathbf{W}$ is a matrix where the diagonal contains the inverse of the variance of the data moments, while all the other entries are zeros.  The minimization of this object function is performed using the global minimization algorithm TikTak, which according to \cite{arnoud2019} outperforms an array of global and local optimizers when the target is a difficult objective function.\footnote{This algorithm is composed of ($i$) a global stage, where the fit of the model is evaluated at quasi-random points; ($ii$) a local stage, where local minimizers are run starting from a combination of the initial points and the solution of local minimizers that already converged.}
+ 
+ \subsection{Identification}
+ This section provides a description of how the structural parameters of the model are identified heuristically. The parameter $\alpha$ is identified from total female labor supply: when this parameter is large the household wants to produce more of public good, which requires women's time. Instead, $\mu$ affects the gap in female labor force supply for married and cohabiting couples: when this parameter is large, specialization within cohabitation becomes harder without having a commitment technology, which increases the gap in labor supply between the two relationship types. The parameters $\lambda_e$ and $\lambda_n$ are intuitively identified by the share of people in a relationship over age and by education. While these moments are influenced by the interaction between wage processes, labor specialization and insurance, also other forces, external to the model, drive them. Since I think that the odds of finding a suitable partner do affect the choice of marriage and cohabitation,\footnote{Having fewer chances to meet someone can make people more willing to marry: cohabitation comes with a very high risk of breakup, which would imply searching again for several periods without the possibility of sharing the public good with someone.} I capture it in a reduced form way. In fact, modeling all the possible mechanisms driving this fact would be computationally problematic.\footnote{For example, \cite{bozick2014} find that college loans delay marriage for women, while \cite{allison2017} find that the college ``hook-up" culture is associated with a higher ideal age at marriage for certain social groups. Since one reason to marry or cohabit is to have children, the age at first relationship for college graduates can be linked to their optimal age at pregnancy, which is higher according to \cite{david2018} because it represents a riskier project than it does for those with fewer years of education.} The parameter $\sigma$ is crucial for determining the share of people that are choosing marriage over cohabitation. In  fact, as this parameter grows larger, money becomes less important than love for total utility. This means that agents care less about insuring against income shocks and labor specialization starts binding less, while the risk of breakup and divorce increases. All these changes make cohabitation relatively more attractive than marriage. The share of labor income left after divorce $\kappa$ plays an important role for the surplus of marriage with respect to cohabitation, but it is mainly identified by the difference in the hazard of divorce and breakup: the larger it is, the stronger selection on marriage and cohabitation with respect to match quality, which creates the gap in the stability of those relationships. Finally, $\sigma_{\eta}$ is identified by the shape of the hazard of divorce, as described in the empirical section.
+ \subsection{Model Fit}
+ Table \ref{table:structural_params} reports parameters estimates together with asymptotic standard errors, computed following \cite{adda2003}. The estimated standard deviation $\sigma$  of the initial match quality shock is $0.063$, while standard deviation $\sigma_{\eta}$ of the noise for match quality is $0.163$. The probability of meeting a partners $\lambda_e$ and $\lambda_n$ are respectively $0.165$ and $0.608$, while the share of labor income left after divorce $\kappa$ is $0.622$. The weight on the public good $\alpha$ is $14.14$, while the productivity loss parameter linked to non participation $\mu$ is $0.297$. 
+ 
+ The fit of the model is reported in table \ref{table:fit}. The share of people that ever cohabited and married over time, as well as the difference in the share of ever been in a relationship by education are overall well fitted.  The moments regarding female labor supply are also well matched, capturing both the level and the difference for married and cohabiting couples. The hazard of divorce is well matched as well as he hazard of breakup, which is both larger than the hazard of divorce and decreasing over time. Instead, the hazard of marriage is slightly lower than in the data.
+ 
+% \footnote{This is due to the fact that the specification of match quality is very parsimonious. The fit to this moment could have been slightly improved by adding a parameter governing the evolution of the ``true" match quality over time. I decided not to do so since the source of identification for this parameter was not clear: it was just contributing to refining the fit to several moments.} 
+ \begin{table}[h!]\footnotesize
+ 	\caption{---Estimated structural parameters} % title of Table
+ 	\label{table:structural_params}
+ 	\centering % used for centering table
+ 	\begin{threeparttable}\footnotesize
+ 		\begin{tabular}{@{\extracolsep{5pt}}lcccc}   % centered columns (4 columns)
+ 			\hline \hline%inserts single line
+ 			\rule{-4pt}{2.5ex}    
+ 			
+ 			Estimated Parameters &  & Value & Standard Error  \\ [0.15ex] % inserts table
+ 			\hline
+ 			\rule{-4pt}{2.5ex}
+ 			Standard deviation of the true match quality         & $\sigma$  & 0.063 &  0.0006 & \\[0.15ex]
+ 			Standard deviation of the noise & $\sigma_{\eta}$         & 0.163  &  0.0012& \\[0.15ex]
+ 			Probability of meeting a partner, College               & $\lambda_e$       & 0.165 & 0.0013 & \\[0.15ex]
+ 			Probability of meeting a partner, No College               & $\lambda_n$       & 0.608 & 0.0028 &  \\[0.15ex]
+ 			Weight of public good               & $\alpha$             & 14.14 & 0.0672 & \\[0.15ex]
+ 			Loss in productivity while not working               & $\mu$             & 0.297 & 0.0013& \\[0.15ex]
+ 			Share of income left after divorce         &$\kappa$   & 0.622& 0.0043 & \\[0.15ex]
+ 			\hline
+ 		\end{tabular}
+ 		\begin{tablenotes}[flushleft]
+ 			\scriptsize{\item \textsc{Notes}: The parameters in the table are estimated by the Method of Simulated Moments.}
+ 		\end{tablenotes}
+ 	\end{threeparttable}
+ \end{table}
+ The model is validated according to its ability to fit a set of external moments which are tightly linked to the mechanisms underlying my model, and hence are relevant for the formation of different mating strategies by education. I check the ability of the model to match the relative hazard of divorce by premarital cohabitation duration and by education, obtained using a Cox regression.\footnote{The relative hazards are obtained using a Cox regression using yearly data for consistency between the model and the data, while the margins of premarital cohabitation and education are specified as in the empirical section.} The fit for the margins of premarital cohabitation is shown in figure \ref{fig:prec}, where the direction and the size of effect of the intensive and extensive margins is the correct one. Instead, the relative risk of divorce of college graduates in simulated data is 0.64, which lies slightly above the 95\% confidence interval of the relative hazard obtained using actual data. Since both insurance and specialization within the couple depend on the selection of women into the labor force, I check the ability of the model to fit the wage of working women by age in the PSID. Figure \ref{fig:incomedata} displays the empirical and simulated wages over the life cycle by education.\footnote{The same graph for men is available in the online appendix.} I can see that simulated wages for women resemble those in the data, meaning that the participation margin works correctly.\footnote{For example, if the selection of women into the labor force was too dependent on women's potential wages in the simulations, I would have observed that the average wage of working women was higher than in the data.}
+ \begin{table}[h!]\centering\footnotesize
+ \begin{threeparttable}[t]\centering\footnotesize
+ \caption{---Model fit, validation and results} % title of Table
+ \label{table:fit} % is used to refer this table in the text
+ % used for centering table
+ \begin{tabular}{@{} l c c c c @{}}  % centered columns (4 columns)
+ \hline\hline %inserts double horizontal lines
+ \rule{-4pt}{2.5ex}
+ Estimated Moments & Model  & Data & 95\% CI \\ [0.05ex] % inserts table
+ %heading
+ \hline % inserts single horizontal line
+ \rule{-4pt}{2.5ex}
+ Hazards over Time              & fig. \ref{fig:haz} & fig. \ref{fig:haz} & fig. \ref{fig:haz} \\[0.15ex]
+ Share Ever Cohabited and Married         & fig. \ref{fig:relations} &  fig. \ref{fig:relations} & fig. \ref{fig:relations} \\[0.15ex]
+ Ever in a relationship---difference by education         & fig. \ref{fig:relations} &  fig. \ref{fig:relations} & fig. \ref{fig:relations} \\[0.15ex]
+ Female Labor supply---marriage and cohabitation & fig. \ref{fig:fls} & fig. \ref{fig:fls} & fig. \ref{fig:fls} \\[0.15ex]
+ \hline \hline%inserts single line
+ \rule{-4pt}{2.5ex}
+ External Moments & Model  & Data       &      95\% CI                      \\ [0.05ex] % inserts table
+ \hline 
+ \rule{-4pt}{2.5ex}
+ Women wages by age           &  fig. \ref{fig:incomedata} &  fig. \ref{fig:incomedata} & fig. \ref{fig:incomedata} \\[0.15ex]
+  Premarital Cohabitation and Divorce Risk  & fig. \ref{fig:prec} & fig. \ref{fig:prec} &  fig. \ref{fig:prec}\\[0.15ex]
+   Risk of of Divorce of College over Non College & 0.69 & 0.32 & [0.25,0.40] \\[0.15ex]
+   \hline 
+    \hline
+ \rule{-4pt}{2.5ex}
+ Results---Mating Strategies by Education & Model  & Data       &      95\% CI                      \\ [0.05ex] % inserts table
+ \hline 
+ \rule{-4pt}{2.5ex}
+ RSH of Cohabitation of being College---Single  &  0.34 &  table \ref{table:singtrans4}& table \ref{table:singtrans4}\\[0.15ex]
+  RSH of Marriage of being College---Single  &  2.73 &  table \ref{table:singtrans4}& table \ref{table:singtrans4}\\[0.15ex]
+   RSH of Marriage of being College---Cohabiting  &  1.19 &  table \ref{table:Coxtrans} & table \ref{table:Coxtrans}\\[0.15ex]
+ \hline
+ \end{tabular}
+ \begin{tablenotes}[flushleft]
+ \scriptsize {\item \textsc{Notes.} RSH stands for \textit{relative sub-hazard ratio}, defined in the empirical section. Confidence intervals are obtained by bootstrapping.}
+ \end{tablenotes}
+ \end{threeparttable}
+ \end{table}
+The main reason why I built and estimated a structural model of partnership choice was to understand to what extent economic incentives can explain of the differences in mating strategies by education. Hence, I estimate the same duration models I used in the empirical section with simulated data, without any controls. Using the simulated singleness spells, I find that the sub-hazard of cohabiting for college graduates is 0.34 of that of the rest of the population. This number is in line with the empirical one, which I estimated to be 0.54-0.74 depending on the controls included. Using again simulated singleness spells, the relative sub-hazard of marriage of being college graduates is 2.73, while the empirical equivalent ranged between 1.03-1.80 depending on the controls included. Finally, using simulated cohabitation spells I find that the sub-hazard of marriage of college graduates is 1.19, which is lower than its empirical counterpart, which was 1.62-1.91 depending on the specification even though the direction of the effect is the same.\footnote{See table \ref{table:Coxtrans} for the details.} Overall, the ratio of college over non-college ever married at 35 is 1.18 in the data and 1.13 in the simulations, while the ratio of college over non-college that ever cohabited at 35 is 0.86 in the data and 0.55. in the simulations.
+
+I can conclude that my model is able to account for most of the differences in mating strategies by education. The differences by education regarding the choices of singles are larger than in the data: it can be that non-economic forces---such as values and religion---are pushing their choice in the opposite direction. If economics forces would bite less, the gradient by education concerning cohabitation could disappear or even reverse, as observed some European countries \cite{perelli2016}. In the next section I disentangle exactly which mechanism accounts for these differences and quantify their importance.
+
+\section{Mechanisms and Experiments}
+The aim of this section is to better understand the quantitative importance of each mechanism present in my model  and to understand which features of the income dynamics matters for triggering different mating strategies by education. To do so, I examine the outcomes obtained simulating the estimated model and through a series of counterfactual experiments.\\
+\textbf{Selection into partnership and learning.} One result of my model is that, as it is more costly to divorce than breakup, the match quality threshold for marrying is larger than that for cohabiting, as described by figure \ref{fig:match_q}, panel (\subref{fig:sub-firs1tq}). This is because for intermediate values of the match quality the risk of divorce is too large. In fact, my simulations show that the distribution of match quality at meeting for married couples dominates that of cohabitors, as depicted in figure \ref{fig:match_q}, panel (\subref{fig:sub-second1q}). This effect is quantitatively large: only 16.9\% of marriages started with a value of the match quality that is lower or equal to its structural mean value,\footnote{The median value of the match quality for a potential couple that just met is 0, while the median of observed match quality of formed couples is larger because of selection.} as opposed to 35.2\% of cohabiting couples. Figure \ref{fig:prec} suggests that both the extensive and intensive margins of premarital cohabitation play an important role for divorce through selection and learning. In table \ref{table:exp} I report the results of a counterfactual experiment where cohabitation is no longer an option:\footnote{This can be interpreted as an extreme increase of stigma towards cohabitation, which can be modelled as a utility penalty that hits cohabiting couples every period. Lower values of utility penalty deliver intermediate results.} I can see that the share of marriages surviving up to their seventh anniversary is 67\% in the experiment versus 79\% in the baseline.\footnote{Survival is computed applying to individuals the duration specific hazard rate.} This suggests that the rise in cohabitations due to a decreasing stigma has contributed to the decline in the rate of divorce in the US, which started at the beginning of the 1980s,\footnote{Note that a rise in cohabitation that happens for reasons other than stigma might cause the divorce rate to vary differently.} a period during which the share of women that ever cohabited increased substantially and the rate of marriage declined.\footnote{According to \cite{manning2013} the share of women that ever cohabited in the United States moved from 33\% in 1987 to 60\% in 2010.} Note that among couples that chose to cohabit as their first relationship in the baseline, 82\% of these would have married according to the policy functions in the counterfactual. This suggests that cohabitation is closer to marriage than singleness. Given this result, it is not unexpected to observe that the share of couples ever married at 35 moves from 63\% in the baseline to 94\% in the counterfactual.
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%FIGURE FOR MATCH QUALITY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+\caption{}
+\label{fig:match_q}
+
+\begin{subfigure}{.49\textwidth}
+\centering
+% include first image
+\vspace{0.16em}
+\vspace{0.0em}
+\caption{Value functions and partnership choices}
+\label{fig:sub-firs1tq}
+\scalebox{0.5}{\input{policy_match.tex} } 
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+\centering
+% include second image
+\caption{Cumulative distribution of match quality}
+\label{fig:sub-second1q}
+\scalebox{0.5}{\input{psidist.pgf} } 
+\end{subfigure}
+\begin{minipage}{0.99\textwidth} % choose width suitably
+
+\hspace{50em}
+
+{\scriptsize \textsc{Notes.} The left pane shows the life time utility to a person of remaining single or start cohabiting or marrying a partner she just met. Note that the threshold for marriage is larger than for cohabiting. The right pane represents the cumulative distribution of the match quality at first meeting conditional on agents' choices that arises from the simulation of the model. \par}
+\end{minipage}
+\end{figure}
+
+\textbf{The role of divorce.}  The only difference between marriage and cohabitation in the model is the cost of splitting. I already explained that divorce acts as a commitment technology that generates the gains from marriage with respect to cohabitation. At the same time, a large cost of divorce might discourage people from marrying since the utility loss in case of splitting would be larger. In figure \ref{fig:divor} I show that the share of people deciding to marry is hump-shaped over the cost of divorce, pointing to the existence of this trade-off.
+\begin{figure}[h!]
+	\centering
+	\caption{---Share of people ever married at 35 and the cost of divorce} 
+	\label{fig:divor}
+	\hspace*{-1.5cm} 
+	\resizebox{0.9\textwidth}{!}{\input{divor.pgf}}
+\end{figure}
+
+\textbf{The role of income dynamics.} College graduates and those with fewer years of education face different income processes: which features of the wage dynamics are the most important for explaining the rise in mating strategies by education? I perform two experiments to answer this question.
+
+ First, I equalize the productivity of women to that of men. The results, displayed in table \ref{table:exp}, show a decrease (increase) in the share of people that ever married (cohabited). The reason is that shrinking the gender wage gap reduces the scope of specialization within the household, thereby reducing the gains from marriage with respect to cohabitation. Interestingly, this change is mostly driven by college graduates, for whom the gender productivity gap is larger.\footnote{\cite{cortes2019} show that the gender pay gap declined more slowly at the top of the distribution.}. Moreover, as male college graduates have a comparative advantage in market production relative to most women, they could form traditional marriages to enjoy the gains from specialization. Hence, a shrinking gender wage gap affects college educated men more by reducing the pool of women with whom they have a comparative advantage in market production. In line with my reasoning, table \ref{table:exp} shows that in the counterfactual, the College-NoCollege gradient in the likelihood of singles to marry shrinks significantly. Instead, the differences by education in the transition from cohabitation into marriage remains constant, even if the incentives to marry for college graduates are eroded in the counterfactual. This is due to a selection effect, as the flow of cohabitors that marry decreases substantially. Note also that the uneven decrease of the gender gap over time is both consistent with the rise in cohabitation and the polarization in partnership choices by education. The size of this effect is large: erasing the productivity gap would cause the share of people ever married by the age of 35 to decrease  by 25\% (see again table \ref{table:exp}). This result is consistent with the work of \cite{anelli2019}, who find that exposure to robots causes both a decline in market opportunities of men with respect to women and a decrease (increase) in the likelihood of being married (cohabiting).
+ \begin{table}[h!]\footnotesize
+	\centering
+	\begin{threeparttable}\centering\footnotesize
+		\caption{---Counterfactual experiments} % title of Table
+		\label{table:exp} % is used to refer this table in the text
+		\centering % used for centering table
+		\begin{tabular}{@{} l c c c  @{}}  % centered columns (4 columns)
+			\hline\hline %inserts double horizontal lines
+			\rule{-4pt}{2.5ex}
+			\textit{Exp.: Cohabitation is not a Choice} & Baseline  & Counterfactual  \\ [0.05ex] % inserts table
+			%heading
+			\hline % inserts single horizontal line
+			\rule{-4pt}{2.5ex}
+			Share Marriages survived up to duration $d=7$   & 0.79 & 0.67 & \\[0.15ex]
+			Share ever married at 35 y.o.                        & 0.63 & 0.94 & \\[0.15ex]
+			\hline \hline%inserts single line
+			\rule{-4pt}{2.5ex}
+			\textit{Exp: Closing the Gender productivity Gap}& Baseline  & Counterfactual  \\ [0.05ex] % inserts table
+			\hline 
+			\rule{-4pt}{2.5ex}
+			Ratio(Share singles that marry)---Coll/NoColl  & 2.80 & 1.07 \\[0.15ex]
+			Ratio(Share cohabitors that marry)---Coll/NoColl   & 1.25 & 1.25 \\[0.15ex]
+			Share ever married at 35 y.o.   & 0.63 & 0.47 \\[0.15ex]
+			Share ever cohabited at 35 y.o.   & 0.72 & 0.86\\[0.15ex]
+			\hline \hline
+			\rule{-4pt}{2.5ex}
+			\textit{Exp: Productivity Shock of College-Non College equalized}& Baseline  & Counterfactual  \\ [0.05ex] % inserts table
+			\hline 
+			\rule{-4pt}{2.5ex}
+			Ratio(Share singles that marry)---Coll/NoColl  & 2.80 & 2.26 \\[0.15ex]
+			Ratio(Share cohabitors that marry)---Coll/NoColl   & 1.25& 1.08 \\[0.15ex]
+			Share ever married at 35 y.o.   & 0.63 & 0.56 \\[0.15ex]
+			Share ever cohabited at 35 y.o.   & 0.72 & 0.72 \\[0.15ex]
+			\hline \hline
+		\end{tabular}
+		\begin{tablenotes}[flushleft]
+			\scriptsize{\item \textsc{Notes.} By saying that I equalized a variable between College and non-College, I mean that I substituted the original value for College with that of Non-College. The share of singles that marry is better understood as a choice between marriage and cohabitation, since censoring happens only through death and very few people retire while single.}
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+\FloatBarrier
+ 
+ As a second experiment, I equalize the persistent shock variance of college graduates to that of those with fewer years of education. The results in table \ref{table:exp} show that the difference in the likelihood of marrying between College and Non College graduates shrinks. This is because the demand for consumption insurance mechanisms of college graduates decreases as their income process becomes less volatile. Consistent with this, the aggregate share of people that ever married (cohabited) decreases (increases) in the counterfactual, driven by the behavior of college graduates.
+\section{Conclusion}
+I study how economic incentives affect partnership choices by education. Using NLSY97 data I show that among singles, college graduates are less likely to cohabit than to marry, and that among cohabitors, college graduates are more likely to marry. The data also show that people marrying directly have a lower risk of divorce that those who cohabited for a short period before the marriage. In particular, the lowest risk of divorce is observed among people who cohabited for a long time before marrying, suggesting that premarital cohabitation might be linked to learning about the match quality. To understand the mechanisms behind these patterns, I build a structural life cycle model of partnership choice that introduces a specific role for learning. In my theory, the gains of marriage with respect to cohabitation come from a better risk-sharing and specialization within the household, enforced through a costly divorce. Since the commitment gains of marriage crucially depend on the match quality, learning creates a rationale for premarital cohabitation. 
+
+I use moments concerning the mating market and female labor supply to estimate the model by the method of simulated moments. The structural estimation shows that the mechanisms captured by the model are able to explain almost entirely the mating patterns by education. In particular, I run a series of counterfactual experiments to disentangle the strength of the competing mechanisms. I find that college graduates are more likely to marry mostly because of their more volatile income, which requires a well-functioning consumption insurance, and because college educated men have a comparative advantage in market production, which is best exploited in a marriage with traditional roles. The progressive reduction of the gender wage gap can explain both the rise in cohabitation and the uneven retreat from marriage: if the gender pay gap closed completely, the number of people married by the age of 35 would drop by 25\%. The role of learning is also quantitatively relevant: if cohabitation were not accessible, marriages would be significantly more unstable.
+
+Beyond what is studied in this paper it would be interesting to model children as consumption commitments.\footnote{Consumption commitments are goods whose consumption is infrequently adjusted because they involve costly transaction costs.} This feature, which has been shown to explain how income volatility and age at marriage are linked \citep{santos2016}, has the potential to partially account for the different age at first marriage and cohabitation of people with different levels of education.
+
+{\footnotesize	\bibliography{mybibliography}}
+\appendix
+\counterwithin{figure}{section}
+\section*{Appendix}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\section{Figures}
+\begin{figure}[h!]
+\caption{---Hazards by duration of spells: simulations and data}
+\label{fig:haz}
+\begin{center}
+\begin{subfigure}{.49\textwidth}
+\centering
+\caption{Hazard of divorce}
+\label{fig:hazd}
+\scalebox{0.49}{\input{hazd.pgf}} 
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+\centering
+\caption{Hazard of breakup}
+\label{fig:hazs}
+\scalebox{0.49}{\input{hazs.pgf}} 
+\end{subfigure}
+\end{center}
+\begin{center}
+\begin{subfigure}{.49\textwidth}
+\centering
+\caption{Hazard of marriage}
+\label{fig:hazm}
+\scalebox{0.49}{\input{hazm.pgf}} 
+\end{subfigure}
+\end{center}
+\end{figure}
+\begin{figure}[h!]
+\caption{---Ever in a relationship by age: simulations and data}
+\label{fig:relations}
+
+\begin{subfigure}{.49\textwidth}
+\centering
+% include first image
+\caption{Ever cohabited and married}
+\label{fig:sub-firs1t1}
+\scalebox{0.5}{\input{erel.pgf} } 
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+\centering
+% include second image
+\caption{\hspace{-0.14cm}$\Delta$Ever in a relat. No College-College}
+\label{fig:sub-second11}
+\scalebox{0.5}{\input{erel_edu.pgf} } 
+\end{subfigure}
+
+
+
+\begin{minipage}{0.99\textwidth} % choose width suitably
+
+\hspace{50em}
+
+{\scriptsize \textsc{Notes.} The left panel displays the share of people ever cohabited and ever married by age. Note that cohabitation has to be interpreted as living together without being married: hence marrying someone directly does not count as cohabitation. Instead, a couple that cohabited before marrying will be part both of the ever married and ever cohabited group. The right panel shows the College-NoCollege difference in the share of people ever in a relationship, by age. Being ever in a relationship means having being married or having cohabited or both.\par}
+\end{minipage}
+\end{figure}
+\begin{figure}
+\begin{center}
+\caption{---Female labor supply: simulations and data}
+\label{fig:fls}
+%\begin{subfigure}
+\hspace*{-1.3cm} 
+\scalebox{0.99}{\input{labor.pgf}} 
+%\end{subfigure}
+\end{center}
+\begin{minipage}{0.99\textwidth} % choose width suitably
+	{\scriptsize \textsc{Notes.} Female labor supply is the share of hours worked in the market over total hours worked, both in the market and at home. In the model is obtained by averaging $P^f_t(1-\phi)$. In the data, female labor supply is obtained dividing average working hours in a week by (40+9.76), where 40 are the hours in a workweek and 9.76 the average time spent per week on housework by singles in the PSID. \par}
+\end{minipage}
+\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\caption{---Low wages over the life cycle: simulations and data}
+\label{fig:incomedata}
+\begin{center}
+\begin{subfigure}{.49\textwidth}
+\centering
+% include second image
+\caption{College women}
+\label{fig:ef}
+\scalebox{0.5}{\input{ef.pgf} } 
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+\centering
+% include second image
+\caption{No college women}
+\label{fig:nf}
+\scalebox{0.5}{\input{nf.pgf} } 
+\end{subfigure}
+\end{center}
+
+\begin{minipage}{0.99\textwidth} % choose width suitably
+	\vspace{1em}
+{\scriptsize \textsc{Notes.} This figure depicts simulated and empirical low wages over the life cycle. Data on wages are constructed dividing the annual labor income by the total number of hours. \par}
+\end{minipage}
+\end{center}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\caption{---Relative hazard of divorce by premarital cohab. duration.}
+	\hspace*{-1.3cm} 
+	\label{fig:prec}
+	\resizebox{0.8\textwidth}{!}{\input{prec.pgf}}
+	\begin{minipage}{0.99\textwidth} % choose width suitably
+		
+		\hspace{30em}
+		
+		{\scriptsize \textsc{Notes.} The relative hazards are obtained using Cox regression using yearly intervals for duration. The intensive and extensive margins of cohabitation are specified as in the empirical section and a dummy for being a college graduate is also included among the regressors. \par}
+	\end{minipage}
+\end{figure}
+
+\end{document}

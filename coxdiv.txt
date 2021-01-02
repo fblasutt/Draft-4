@@ -1,0 +1,14 @@
+\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}         \def\tenpc{$^{\dag}$}         \def\legend{\multicolumn{3}{l}{\footnotesize{Significance levels                                 :\hspace{1em} $\ast$ : 10\% \hspace{1em}                                 $\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}         \begin{table}[htbp]\centering                 \caption{Estimation results : Cox proportional Hazard Model for Divorce                                 \label{tabresult cox}}
+                      (1)             (2)             (3)             (4)   \\
+                       _t              _t              _t              _t   \\
+----------------------------------------------------------------------------
+Cohabited            1.87***         1.05*           1.61**          1.23*  \\
+                   (4.55)          (2.33)          (3.18)          (2.33)   \\
+
+Log_coh             -0.17***        -0.11*          -0.17**         -0.13*  \\
+                  (-3.88)         (-2.19)         (-3.13)         (-2.22)   \\
+----------------------------------------------------------------------------
+N                    2805            2805            2734            2498   \\
+----------------------------------------------------------------------------
+t statistics in parentheses
+* p<0.05, ** p<0.01, *** p<0.001

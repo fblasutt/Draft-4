@@ -1,0 +1,181 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[12pt]{article}
+\usepackage[round, sort, authoryear]{natbib}
+\usepackage[T1]{fontenc}
+%%% PAGE DIMENSIONS
+\usepackage[margin=2.5 cm]{geometry}
+\usepackage{blindtext} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+\usepackage{tgpagella}
+\usepackage[utf8]{inputenc} 
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{epstopdf}
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+%%% PACKAGES
+\usepackage{placeins}
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{cases}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{authblk}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\linespread{1.5}
+
+\usepackage{amssymb} 
+\usepackage{tabularx}
+\usepackage{subfig}
+\usepackage{kpfonts}    % for nice fonts
+\usepackage{microtype} 
+\usepackage{booktabs}   % for nice tables
+\usepackage[colorlinks=false, linktocpage=true]{hyperref}
+
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+% use for hypertext
+\usepackage[colorinlistoftodos]{todonotes}
+
+%For Figures, below
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepgflibrary{arrows} % LATEX and plain TEX and pure pgf
+\usepgflibrary[arrows] % ConTEXt and pure pgf
+\usetikzlibrary{arrows} % LATEX and plain TEX when using Tik Z
+\usetikzlibrary[arrows] % ConTEXt when using Tik Z
+\usepackage{hyperref}
+
+
+%%% The "real" document content comes below...
+\title{Notes for the Meeting}
+\author{Fabio Blasutto}
+
+\begin{document}
+	\bibliographystyle{IEEEtranN}
+	\maketitle
+\section{The model(s)}
+In this section I will briefly introduce the reader to the different models that I have used for the calibration with the relative pictures of the value functions.
+\subsection{Uncertainty}
+ The match quality of a couple at a first meeting is distributed as $\theta^v_0\sim\mathcal{N}(\overline{\theta},\sigma_\theta^2)$. $\theta^v_d$ instead is the true match quality of a couple that stayed together for $d$ periods. Agents do not observe directly the match quality, but instead they observe a noisy signal of it,  $\theta^f_d$. The complete dynamics of the match quality and of the signal are
+ \begin{equation}\label{eq:evlaw}
+ \begin{cases}
+ \theta^v_d=\rho\theta^v_{d-1}+\epsilon_t\\
+ \theta^f_d=\theta^v_{d}+\mu_t,
+ \end{cases}
+ \end{equation}
+ where $\mu_d\sim\mathcal{N}(0,\sigma_\mu^2)$ and  $\epsilon_d\sim\mathcal{N}(0,\sigma_\epsilon^2)$ are independent. Given their previous observations and their prior, agents use all the information that they gathered in order to compute the best estimate for $\theta^v_d$, $\hat{\theta}^v_d$ and its variance $\hat{\sigma}_{d}^2$. I assume that the agents know the distribution of the system \ref{eq:evlaw}, so that their estimate $\hat{\theta}^v_d$ of the distribution of $\theta^v_d$ is normally distributed. I model the efficient use of the information available assuming that the best estimate of $\theta^v_d$ is determined by the \textit{Kalman filter}: following \citet{sargent2012} chapter 2.7 I can write the recursion of the expectations as follow:
+ \begin{equation}\label{eq:kalman}
+ \begin{cases}
+ \hat{\theta}^v_{d+1}=\rho\hat{\theta}^v_d+ K_{d+1}(\theta^f_d-\rho\hat{\theta}^v_d)\\
+ \hat{\sigma}_{d+1}^2=(1-K_{d+1})(\rho^2\hat{\sigma}_{d}^2+\sigma^2_\epsilon)\\
+ K_{d+1}=\frac{\rho^2\hat{\sigma}_{d}^2+\sigma^2_\epsilon}{\rho^2\hat{\sigma}_{d}^2+\sigma^2_\epsilon+\sigma_{\mu}^2}.\\
+ \end{cases}
+ \end{equation}
+  I will call $\mathcal{C}_d=[\hat{\theta}^v_d;d]$ the information set in $d$. Note that I will call $Prob({z\leq s|\mathcal{C}_d})=F(z|\mathcal{C}_d)$, where $\int F(z|\mathcal{C}_d)dz=\mathcal{N}(\hat{\sigma}_d^v,\hat{\sigma}_{d}^2)$.
+ \section{The Benchmark model}
+ The model that I will develop is of the match quality type, similar to the one of \citet{jovanovic1979}.  Agents are heterogeneous and can be of the type $i \in \{H,L\}$: I will interpret it as high or low education. When they are single, agents draw a noisy signal of the \textit{match quality} parameter, then agents have to decide whether to stay single, to marry or to cohabit. If they are cohabiting, in every period they receive a new signal and they have to decide whether to continue cohabitation, to marry or to separate and become single. When they are married, they  receive a new signal and they have to decide whether to continue the marriage or to divorce at a cost $d$ and to become single. Moreover, I will denote by $q^g_{j}$ the share of people of the sex $g\in\{f,m\}$ of the type $j \in \{H,L\}$.\\
+ The lifetime utility for a single of sex $r\in\{f,m\}$, type $j\in\{H,L\}$ that meets people of sex  $g\in\{f,m\}$ of type  $i\in\{H,L\}$ is:
+ \begin{equation}\label{eq:vsi}
+ \begin{split}
+ V_{r,j}&=log(w_{r,j})+\\&\beta\sum_{i\in \{H,L\}}\int\max\bigg\{V_{r,j};V^{c}_{r,j}(\mathcal{C}_1,i)+\mathcal{I}_j^c(\mathcal{C}_1,i);V^{s}_{r,j}(\mathcal{C}_1,i)+\mathcal{I}_j^s(\mathcal{C}_1,i)\bigg\}q^{g}_i dF(\hat{\theta}_1^v|\mathcal{C}_0)
+ \end{split}
+ \end{equation}
+ where $w_{r,j}$ is her wage. Moreover
+ \begin{equation}
+ \mathcal{I}^c_j(\mathcal{C}_d,i)=
+ \begin{cases}
+ 1       & \quad \text{if }V^{c}_{g,i}(\mathcal{C}_d,j) \geq V_{g,i}\\
+ -\infty  & \quad else,
+ \end{cases}
+ \end{equation}
+ and
+ \begin{equation}
+ \mathcal{I}^s_j(\mathcal{C}_d,i)=
+ \begin{cases}
+ 1       & \quad \text{if }V^{s}_{g,i}(\mathcal{C}_d,j) \geq\max\big\{V_{g,i},V^{c}_{g,i}(\mathcal{C}_d,j)\big\}\\
+ -\infty  & \quad else.
+ \end{cases}
+ \end{equation}
+ \newpage
+ If she is cohabiting with a partner of the type $i$ and sex $g$, and with the draws $(\theta,\epsilon_t)$, her flow utility is
+ \begin{equation}\label{eq:vco}
+ \begin{split}
+ V_{r,j}^{c}(&\mathcal{C}_d,i)=log(w_{r,j}+w_{g,i})+\hat{\theta}_{d}^v+\\& \beta\int\max\bigg\{V_{r,j};V^{c}_{r,j}(\mathcal{C}_{d+1},i)+\mathcal{I}_j^c(\mathcal{C}_{d+1},i);V^{s}_{r,j}(\mathcal{C}_{d+1},i)+\mathcal{I}_j^s(\mathcal{C}_d,i)\bigg\} dF(\hat{\theta}_{d+1}^v|\mathcal{C}_{d});
+ \end{split}
+ \end{equation}
+ Note that consumption (as well as love) is assumed to be a public good within the couple, as in \citet{greenwood2016technology}.
+ If instead the agent is married, her bellman equation is
+ \begin{equation}\label{eq:vsp}
+  \begin{split}
+ V_{r,j}^{s}(&\mathcal{C}_d,i)=log(w_{r,j}+w_{g,i})+\gamma+\hat{\theta}_{d}^v+\\& \beta\int\max\bigg\{V_{r,j}-\kappa;V^{s}_{r,j}(\mathcal{C}_{d+1},i)+\mathcal{I}_j^s(\mathcal{C}_{d+1},i)\bigg\} dF(\hat{\theta}_{d+1}^v|\mathcal{C}_{d}).
+   \end{split}
+ \end{equation}
+ Where $\gamma>0$ is a parameter that captures the additional gains from marriage compared to cohabitation. We can interpret it as the additional gains for a better specialization in production within the couple, as \citet{gemici2014} suggested, or as gains that derives from a more stable environment for rising children , as in \citet{lundberg2016}.
+ \subsection{The Value Function}
+ The value functions\begin{footnote}{For singles and in a relationship at $d=1$} \end{footnote} of the model illustrated above follows:
+\begin{center}
+\includegraphics[width=0.7\linewidth]{valued1}
+\end{center}
+\newpage
+The value function of living together in period 1 versus period 5 instead is:
+\begin{center}
+	\includegraphics[width=0.7\linewidth]{learning}
+\end{center}
+ \section{Fix Cost For each Household}
+ Assuming as in \cite{greenwood2016technology} that each household has to pay a fix cost $\mu$ the Utility Functions change as follow:
+  The value functions\begin{footnote}{For singles and in a relationship at $d=1$} \end{footnote} of the model illustrated above follows:
+  \begin{center}
+  	\includegraphics[width=0.7\linewidth]{valued11}
+  \end{center}
+  \newpage
+  The value function of living together in period 1 versus period 5 instead is:
+  \begin{center}
+  	\includegraphics[width=0.7\linewidth]{learning1}
+  \end{center}
+  \section{Nash Bargaining}
+  Now I will assume that for couples consumption is decided under Nash bargaining, where the outside options are being single or divorcing respectively for cohabitation and marriage. Now during cohabitation consumption between an agent of sex $r$ with ability $j$ and a partner of ability $i$ is defined as:
+  \begin{equation}
+  (\hat{c}_{r,j})\in argmax_{c_{r,j}}\bigg[V^c_{r,j}(c_{r,j}|\mathcal{C}_d,i)-V_{r,j}\bigg]\bigg[V^c_{g,i}(w_{r,j}+w_{g,i}-\mu-c_{r,j}|\mathcal{C}_d,j)-V_{g,i}\bigg]
+  \end{equation}
+While if they are married:
+ \begin{equation}
+ (\hat{c}_{r,j})\in argmax_{c_{r,j}}\bigg[V^c_{r,j}(c_{r,j}|\mathcal{C}_d,i)-V_{r,j}+\kappa\bigg]\bigg[V^c_{g,i}(w_{r,j}+w_{g,i}-\mu-c_{r,j}|\mathcal{C}_d,j)-V_{g,i}+\kappa\bigg]
+ \end{equation}
+ \newpage
+  \subsection{The Value Function}
+  The value functions\begin{footnote}{For singles and in a relationship at $d=1$} \end{footnote} of the model illustrated above follows:
+  \begin{center}
+  	\includegraphics[width=0.7\linewidth]{valued2}
+  \end{center}
+  The value function of living together in period 1 versus period 5 instead is:
+  \begin{center}
+  	\includegraphics[width=0.7\linewidth]{learning2}
+  \end{center}
+ \bibliography{mybibliography}
+
+\end{document}

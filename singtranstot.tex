@@ -1,0 +1,27 @@
+{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}              \begin{tabular}{l*{6}{c}}                          \toprule          
+		\\[-1.8ex] & \multicolumn{3}{c}{Sample I} & \multicolumn{3}{c}{Sample II} \\ 
+		\cmidrule(lr){2-4} \cmidrule(lr){5-7} 	
+		   &\multicolumn{1}{c}{(1)}  &\multicolumn{1}{c}{(2)}  &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)} &\multicolumn{1}{c}{(5)}  &\multicolumn{1}{c}{(6)}        \\             \midrule             \textsc{Dep. Variable:} & & & & & & \\\textsc{Sub-Hazard of Marriage} & & & & & & \\ & & & & & & \\
+Completed College (0/1)&     1.80\sym{***}&     1.15\sym{**} &     1.15\sym{**} &     1.75\sym{***}&     1.03         &     1.04         \\
+                &   (0.11)         &   (0.08)         &   (0.08)         &   (0.12)         &   (0.07)         &   (0.07)         \\
+Age             &                  &     1.22         &     1.22         &                  &     1.16         &     1.16         \\
+                &                  &   (0.15)         &   (0.15)         &                  &   (0.15)         &   (0.15)         \\
+Age Squared     &                  &     1.00         &     1.00         &                  &     1.00         &     1.00         \\
+                &                  &   (0.00)         &   (0.00)         &                  &   (0.00)         &   (0.00)         \\
+Female          &                  &     1.01         &     1.00         &                  &     1.04         &     1.02         \\
+                &                  &   (0.06)         &   (0.06)         &                  &   (0.07)         &   (0.07)         \\
+Hispanic        &                  &     1.23\sym{**} &     1.21\sym{**} &                  &     1.21\sym{**} &     1.19\sym{*}  \\
+                &                  &   (0.10)         &   (0.10)         &                  &   (0.12)         &   (0.11)         \\
+Church          &                  &     1.49\sym{***}&     1.49\sym{***}&                  &     1.49\sym{***}&     1.49\sym{***}\\
+                &                  &   (0.03)         &   (0.03)         &                  &   (0.03)         &   (0.03)         \\
+Black           &                  &     0.43\sym{***}&     0.41\sym{***}&                  &     0.39\sym{***}&     0.37\sym{***}\\
+                &                  &   (0.04)         &   (0.04)         &                  &   (0.04)         &   (0.04)         \\
+Rural           &                  &     0.65\sym{***}&     0.64\sym{***}&                  &     0.64\sym{***}&     0.63\sym{***}\\
+                &                  &   (0.06)         &   (0.06)         &                  &   (0.07)         &   (0.07)         \\
+Smoke           &                  &     0.54\sym{***}&     0.53\sym{***}&                  &     0.51\sym{***}&     0.50\sym{***}\\
+                &                  &   (0.05)         &   (0.05)         &                  &   (0.05)         &   (0.05)         \\
+Initial Nr. of Children&                  &                  &     1.52\sym{**} &                  &                  &     1.69\sym{***}\\
+                &                  &                  &   (0.27)         &                  &                  &   (0.30)         \\
+Religion Dummies & & \checkmark & \checkmark & & \checkmark & \checkmark \\           Relationship Number & & \checkmark & \checkmark & & \checkmark & \checkmark \\           Geographic Controls  & & \checkmark & \checkmark &  & \checkmark & \checkmark\\                         \hline
+Observations    &    12365         &    12133         &    12133         &     9443         &     9415         &     9415         \\
+\hline

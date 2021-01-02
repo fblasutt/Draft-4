@@ -1,0 +1,419 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[12pt]{article}
+%\documentclass[AEJ]{AEA}
+\usepackage[round, sort , authoryear]{natbib}
+
+
+\usepackage{pgf}
+%%% PAGE DIMENSIONS
+\usepackage[margin=2.5cm]{geometry}
+%\usepackage[top=1.5in, bottom=1.5in, left=1.5in, right=1in]{geometry}
+\usepackage{blindtext} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+\geometry{margin=1.5in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage[utf8]{inputenc} 
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{epstopdf}
+\usepackage[hang]{footmisc}
+\usepackage{lipsum}
+\usepackage{setspace}
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+%%% PACKAGES
+\usepackage{placeins}
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+%\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{amsmath}
+%\numberwithin{table}{section}
+\usepackage{cases}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{authblk}
+\usepackage{titling}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\linespread{1.5}
+\usepackage{xr}
+\externaldocument{chapterI}
+\setlength{\footnotemargin}{4mm}
+\usepackage{amssymb} 
+\usepackage{tabularx}
+%\usepackage{subfig}
+\addtolength{\footnotesep}{2mm} % change to 1mm
+
+\usepackage{xr}
+\externaldocument{draft3sub}
+
+%For new line in table
+\usepackage{threeparttablex}
+
+%For Counting Figures in the Appendix
+\usepackage{chngcntr}
+
+%Nice Figure and table headers
+\captionsetup[figure]{labelfont={sc},name={Figure},labelsep=period}
+ \captionsetup[table]{labelfont={sc},name={Table},labelsep=period,justification=centering}
+ 
+\usepackage{booktabs}   % for nice tables
+\usepackage[colorlinks=false, linktocpage=true]{hyperref}
+%\usepackage[flushmargin]{footmisc}
+%\addtolength{\footnotesep}{3mm} % change to 1mm
+\hypersetup{
+	colorlinks,
+	linkcolor={blue!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+% use for hypertext
+\usepackage[colorinlistoftodos]{todonotes}
+\newenvironment{customlegend}[1][]{%
+	\begingroup
+	% inits/clears the lists (which might be populated from previous
+	% axes):
+	\pgfplots@init@cleared@structures
+	\pgfplotsset{#1}%
+}{%
+% draws the legend:
+\pgfplots@createlegend
+\endgroup
+}%
+%For Figures, below
+\usepackage{subcaption}
+%\renewcommand{\thesubfigure}{ (\alph{subfigure})}
+%\captionsetup[sub]{labelformat=simple}
+
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{shapes}
+\usepgflibrary{arrows} % LATEX and plain TEX and pure pgf
+\usepgflibrary[arrows] % ConTEXt and pure pgf
+\usetikzlibrary{arrows} % LATEX and plain TEX when using Tik Z
+\usetikzlibrary[arrows] % ConTEXt when using Tik Z
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+
+%for math
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+%%% The "real" document content comes below...
+\setlength{\droptitle}{-1cm} 
+
+\title{Cohabitation \textit{vs} Marriage:\\ Mating Strategies by Education in the USA \\ \textbf{Online Appendix}}
+\author{Fabio Blasutto}
+
+ \begin{document}
+ %Stuff for figures, below
+
+ 	\tikzstyle{block} = [draw, fill=white, rectangle, 
+ 	minimum height=3em, minimum width=6em]
+ 	\tikzstyle{sum} = [draw, fill=white, circle, node distance=1cm]
+ 	\tikzstyle{input} = [coordinate]
+ 	\tikzstyle{output} = [coordinate]
+ 	\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+ 	
+ 	
+ 	%Gauss distribution
+ 	\pgfmathdeclarefunction{gauss}{2}{%
+ 		\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+ 	}
+ % Bibliography style, important for biblatex functioning	
+\bibliographystyle{apa}
+
+
+	\maketitle
+\appendix
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\section{Duration Analysis}\label{subsection:duration}
+In this section I present the complete results of the duration models used in this paper and the robustness checks. First, I describe the controls used in the regressions that are non self-explanatory.
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\item \textit{Church}: Number of worship attended last month---averaged over the years the respondent answered the question.
+\item \textit{Initial Number of Children}: Number of children at the beginning of the spell. 
+\item \textit{Relationship Number}: Dummies of the number of marriages and cohabitations experienced by the individual before the current spell began.
+\item \textit{Geographic Controls}: Dummy variables capturing the census region and whether the respondent lives in a Metropolitan statistical area.
+\item \textit{Educational Homogamy}: Dummy taking the value of 1 when both partners have a college degree or whether both partners do not have a college degree.
+\item \textit{Shotgun Marriage}: Dummy variable taking value one if a child was born during the first 8 months of the marriage.
+\item \textit{Religion Dummies}: Dummies of religious affiliation.
+\end{itemize} 
+ \textbf{Robustness check---Multinomial logit.} I use the multinomial logit reshaping the dataset to be of the spell-month type as a robustness check for the results obtained with the Fine-Gray model. The multinomial logit has the following advantages: ($i$) does not rely on proportionality assumptions ($ii$) it takes into account that duration is discrete ($iii$) it allows to control for attrition by modeling it as an additional competing risk.\footnote{The drawback of the multinomial logit is that it relies on the strong assumption of independence of irrelevant alternatives.} Tables \ref{table:mpc_sing} and \ref{table:mpc_coh} show that the association between graduating from college and the risk of interest is the same as that obtained with the Fine-Gray model.\footnote{Note that the magnitudes of the results of the two models are not directly comparable, since Fine-Gray estimates sub-hazard ratios, while I obtain hazard ratios with the multinomial logit. Instead, \cite{austin2017} point out that the direction of the sub-hazard ratio and the relative hazard ratio are the same.} \\
+ \textbf{Robustness check---Logit.} Results in table \ref{tabresult Cox} in the main text might not precise because my data is discrete or because the risk of divorce over time is not proportional to all of the covariates I control for.\footnote{I performed the proportionality test by \cite{grambsch1994} in all the specifications. The assumption holds both for the intensive and extensive margins of cohabitation variables in all the specifications except for the intensive margin in (5) and (6). Instead, for some controls the proportionality assumption does not hold.} Hence, I run a robustness check, where I use a hazard model in discrete time. Following \citet{jenkins1995}, I reshape my dataset to be  of the marriage spell-month type, then estimate a logit model where the dependent variable is a dummy that takes value one if a divorce was observed in that month and zero otherwise. The results with this method, presented in table \ref{tabresult logitdiv}, are close the ones obtained from the Cox regression.   
+{	
+	\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{3}{l}{\footnotesize{Significance levels
+				:\hspace{1em} $\ast$ : 10\% \hspace{1em}
+				$\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}
+	\begin{table}[htbp]\centering\scriptsize
+		\caption{---\citet{fine1999} duration model. Observations: singleness spells.}
+		\label{table:singtranstot2}
+		\begin{threeparttable}[t]\centering\scriptsize
+			\input{singtranstot2}
+	\end{tabular}}
+	\begin{tablenotes}
+		\scriptsize{\item \textsc{Notes}: The results are displayed in terms of relative sub-hazard ratios. A sub-hazard is defined as the probability that the event of interest happens conditionally on not having occurred already, while a competing event might already have happened. When the ratio is larger than 1, it means that the covariate increases the likelihood that the event occurs. The composition of samples I and II is described in the text. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+	\end{tablenotes}
+\end{threeparttable}
+\end{table}
+}
+
+%Fine and Gray Cox regression (1999) for cohabitation transition into marriage
+{	
+\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+\def\tenpc{$^{\dag}$}
+\def\legend{\multicolumn{3}{l}{\footnotesize{Significance levels
+		:\hspace{1em} $\ast$ : 10\% \hspace{1em}
+		$\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}
+\begin{table}[htbp]\centering\scriptsize
+\begin{threeparttable}[t]\centering\scriptsize
+	\caption{---\citet{fine1999} duration model. Observations: singleness spells.}
+	\label{table:singtranstot}
+	\input{singtranstot}
+\end{tabular}}
+\begin{tablenotes}
+\scriptsize{\item \textsc{Notes}: The results are displayed in terms of relative sub-hazard ratios. A sub-hazard is defined as the probability that the event of interest happens conditionally on not having occurred already, while a competing event might already have happened. When the ratio is larger than 1, it means that the covariate increases the likelihood that the event occurs. The composition of samples I and II is described in the text. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+}
+
+%------- End LaTeX code -------%
+%Fine and Gray Cox regression (1999) for singleness to marriage (marriage is a competing risk)
+{	
+\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+\def\tenpc{$^{\dag}$}
+\def\legend{\multicolumn{3}{l}{\footnotesize{Significance levels
+:\hspace{1em} $\ast$ : 10\% \hspace{1em}
+$\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}
+\begin{table}[htbp]\centering\scriptsize
+\caption{---\citet{fine1999} duration model. Observations: cohabitation spells.}
+\label{table:Coxtranstot}
+\begin{threeparttable}[t]\centering\scriptsize
+\input{Coxtranstot}
+\end{tabular}}
+\begin{tablenotes}
+\scriptsize{\item \textsc{Notes}: The results are displayed in terms of relative sub-hazard ratios. A sub-hazard is defined as the probability that the event of interest happens conditionally on not having occurred already, while a competing event might already have happened. When the ratio is larger than 1, it means that the covariate increases the likelihood that the event occurs. The composition of samples I and II is described in the text. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+}
+
+
+
+
+{	
+	\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{3}{l}{\footnotesize{Significance levels
+				:\hspace{1em} $\ast$ : 10\% \hspace{1em}
+				$\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}
+	\begin{table}[htbp]\centering\scriptsize
+		\caption{---Cox model. Observations: marriage spells.}
+			\label{tabresult Cox_tot}
+			 \begin{threeparttable}[t]\centering\scriptsize
+		\input{Coxdivtot}
+	\end{tabular}}
+	 \begin{tablenotes}
+           \scriptsize{\item \textsc{Notes}: The results are displayed in terms of relative risk. For example, if the number next to the variable \textit{College} is $\alpha$, it means being a college graduate have a risk of marriage which is $  \alpha$\% of the risk of the rest of the population. Standard errors are clustered at the individual level. The composition of samples I and II is described in the text. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+    \end{tablenotes}
+             \end{threeparttable}
+	\end{table}
+}
+	
+
+
+%Logit divorce
+
+{	
+	\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{3}{l}{\footnotesize{Significance levels
+				:\hspace{1em} $\ast$ : 10\% \hspace{1em}
+				$\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}
+	\begin{table}[htbp]\centering\scriptsize
+		\caption{---Logit model. Observations: each month of any marriage spell.}
+			\label{tabresult logitdiv}
+			 \begin{threeparttable}[t]\centering\scriptsize
+		\input{logitdivtot}
+	\end{tabular}}
+	 \begin{tablenotes}
+           \scriptsize{\item \textsc{Notes}: The results are displayed in terms of relative risk. For example, if the number next to the variable \textit{College} is $\alpha$, it means being a college graduate have a risk of marriage which is $  \alpha$\% of the risk of the rest of the population. Standard errors are clustered at the individual level. The composition of samples I and II is described in the text. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+    \end{tablenotes}
+             \end{threeparttable}
+	\end{table}
+}
+
+
+
+
+%%MNP SINGLENESS
+\begin{table}[htbp]\centering\footnotesize
+\setlength{\tabcolsep}{16pt}
+\caption{---Multinomial Logit. Observation: person-month of singleness}
+\label{table:mpc_sing}
+\begin{threeparttable}[t]\centering
+\input{mpm}
+\begin{tablenotes}[flushleft]
+\footnotesize{\item \textsc{Notes}: the estimation of this model is performed using the $R$ package mlogit developed by \cite{croissant2012}. The dependent variable includes 4 possible outcomes: marriage, cohabitation, censored observation or observation lost for attrition. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\FloatBarrier
+
+%%MNP COHABITATION
+\begin{table}[htbp]\centering\small
+\setlength{\tabcolsep}{16pt}
+\caption{---Multinomial Logit. Observation: person-month of cohabitation}
+\label{table:mpc_coh}
+\begin{threeparttable}[t]\centering\small
+\input{mpc}
+\begin{tablenotes}[flushleft]
+\footnotesize{\item \textsc{Notes}: the estimation of this model is performed using the $R$ package mlogit developed by \cite{croissant2012}. Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\FloatBarrier
+
+\section{Female Labor Force Participation}\label{subsection:participation}
+%MARRUAGE TO DIVORCE
+{	
+	\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{1}{l}{\footnotesize{Significance levels
+				:\hspace{1em} $\ast$ : 10\% \hspace{1em}
+				$\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}
+	\begin{table}[h!]\centering\small
+	\caption{---Probit Regression. Observation: females college graduates in year $t$.}
+	\label{table:prb_wome}
+	\begin{threeparttable}[t]\centering\small
+	\input{inc_wome}
+	\end{tabular}}
+\begin{tablenotes}[flushleft]
+\footnotesize{\item \textsc{Notes.} The demographic controls include marital status and number of children in the family unit, as well as age and age squared. Standard errors are clustered at the state level.
+	Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+}
+\FloatBarrier
+
+{	
+	\def\onepc{$^{\ast\ast}$} \def\fivepc{$^{\ast}$}
+	\def\tenpc{$^{\dag}$}
+	\def\legend{\multicolumn{1}{l}{\footnotesize{Significance levels
+				:\hspace{1em} $\ast$ : 10\% \hspace{1em}
+				$\ast\ast$ : 5\% \hspace{1em} $\ast\ast\ast$ : 1\% \normalsize}}}
+	\begin{table}[h!]\centering\small
+	\caption{---Probit Regression. Observation: females without college in year $t$.}
+	\label{table:prb_womn}
+	\begin{threeparttable}[t]\centering\small
+	\input{inc_womn}
+	\end{tabular}}
+\begin{tablenotes}[flushleft]
+\footnotesize{\item \textsc{Notes.} The demographic controls include marital status and number of children in the family unit, as well as age and age squared. Standard errors are clustered at the state level.
+	Coefficients that are significantly different from zero are denoted by *10\%, **5\%  and ***1\%.}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+}
+\FloatBarrier
+
+\section{Additional Figures}
+\begin{figure}[h!]
+	\caption{---Labor productivities means and variances by age: simulated data}
+	\label{fig:symmetry}
+	
+	\begin{subfigure}{.49\textwidth}
+		\centering
+		% include first image
+		\caption{Average Log Wages}
+		\label{fig:sub-firs1t}
+		\scalebox{0.5}{\input{sy_minc.pgf} } 
+	\end{subfigure}
+	\begin{subfigure}{.49\textwidth}
+		\centering
+		% include second image
+		\caption{Variance Log Wages}
+		\label{fig:sub-second1}
+		\scalebox{0.5}{\input{sy_vinc.pgf} } 
+	\end{subfigure}
+	
+	
+	
+	\begin{minipage}{0.99\textwidth} % choose width suitably
+		
+		\hspace{50em}
+		
+		{\scriptsize \textsc{Notes.} The figures display means and variances of productivities (potential log wages) of men and women in a couple over their age. I label as ``main person" the variables that are computed from agents that are simulated and followed through their whole life-cycle, while I label as ``met person" the variables constructed using the partners met by the people whose behavior is simulated for their whole life-cycle. Potential wage variables are constructed using couples at any point of their relationship. Note that the values for women are extreme because they include women that never participate in the labor market: these are hit by the negative productivity drift $\mu$ each period.\par}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\caption{---Low wages over the life cycle: simulations and data}
+		\label{fig:incomedata}
+		\begin{subfigure}{.49\textwidth}
+			\centering
+			% include first image
+			\caption{College men}
+			\label{fig:em}
+			\scalebox{0.5}{\input{em.pgf} } 
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\centering
+			% include second image
+			\caption{No college men}
+			\label{fig:nm}
+			\scalebox{0.5}{\input{nm.pgf} } 
+		\end{subfigure}
+	\end{center}
+\end{figure}
+{\footnotesize	\bibliography{mybibliography}}
+
+\end{document}
+
+
+%\section{Mating Market}\label{section:mating_mkt}
+%Once the meeting happened, agents have to decide whether to stay in a couple and eventually decide which partnership contract to choose. I model their choices in three steps.
+%\begin{enumerate}
+%	\item The couple considers marriage $M$ (cohabitation $C$) as a viable alternative if the set of Pareto weights\footnote{Without loss of generality, I impose $\theta^f+\theta^m=1$ at first meeting.} $\theta^f$ such that the couple prefers to marry (cohabit) is non-empty. Formally, for relationship $J\in\{M,C\}$ the set is
+%	\begin{equation}\label{eq:set_couple}
+%	\Theta^J_t(\Omega^J_t,\omega^f_t,\omega^m_t)=\big\{\theta_t: V_t^{J_f}(\Omega^J_t)\geq V_t^{S_s}(\omega^f_t), V_t^{J_m}(\Omega^J_t)\geq V_t^{S_m}(\omega^m_t)\big\}.
+%	\end{equation}
+%	\item If the set for marriage (cohabitation) is non-empty, the Pareto weight for the potential marriage $\theta^{m,f}$ (cohabitation $\theta^{c,f}$) is set through symmetric Nash Bargaining.\footnote{The assumption that the initial Pareto weight is pinned down by Nash Bargaining can be found in \cite{low2018}.} Formally\footnote{For consistency with the rest of the paper I define $\Omega^{J,-1}_t$ as the state vector for the couple excluding Pareto weights.}, for $J\in\{M,C\}$ $\theta^{J,f}$ is set to :
+%	\begin{equation}\label{nash_couple}
+%	\theta^{J,f}_t= \argmax_{\theta^f_t\in\Theta^J_t} \Upsilon^J(\theta^f_t,\Omega^{J,-1}_t,\omega^f_t,\omega^m_t),
+%	\end{equation}
+%	where
+%	\begin{equation}
+%	\Upsilon^J(\theta^f_t,\Omega^{J,-1}_t,\omega^f_t,\omega^m_t)=\big[V_t^{J_f}(\Omega^{J,-1}_t)- V_t^{S_f}(\omega^f_t)\big]\times\big[ V_t^{J_m}(\Omega^{J,-1}_t)- V_t^{S_m}(\omega^m_t)\big].
+%	\end{equation}
+%	\item Four possible situations can arise:
+%	\begin{itemize}
+%		\item $\Theta^M_t=\O\text{ and }\Theta^C_t=\O \Rightarrow$ stay single.
+%		\item $\Theta^M_t\neq\O\text{ and }\Theta^C_t=\O \Rightarrow$ marry.
+%		\item $\Theta^M_t=\O\text{ and }\Theta^C_t\neq\O \Rightarrow$ cohabit.
+%		\item $\Theta^M_t\neq\O\text{ and }\Theta^C_t\neq\O \Rightarrow$ The couple chooses the partnership that gives the largest Nash product. Formally, if $ \Upsilon^M(\Omega^M_t,\omega^f_t,\omega^m_t)\geq\Upsilon^C(\Omega^C_t,\omega^f_t,\omega^m_t)$, otherwise cohabit.
+%	\end{itemize}
+%	This framework is a natural extension of the Nash bargaining problem to discrete choices.
+%\end{enumerate}

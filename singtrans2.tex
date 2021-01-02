@@ -1,0 +1,10 @@
+{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}              \begin{tabular}{l*{6}{c}}                          \toprule    
+\\[-1.8ex] & \multicolumn{3}{c}{Sample I} & \multicolumn{3}{c}{Sample II} \\ 
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} 			
+		         &\multicolumn{1}{c}{(1)}  &\multicolumn{1}{c}{(2)}  &\multicolumn{1}{c}{(3)}       &\multicolumn{1}{c}{(4)} &\multicolumn{1}{c}{(5)}  &\multicolumn{1}{c}{(6)}        \\             \midrule              \textsc{Dep. Variable:} & & & & & & \\\textsc{Hazard of Cohabitation} & & & & & & \\ & & & & & & \\
+\addlinespace
+Completed College (0/1)&        0.65\sym{***}&        0.78\sym{***}&        0.78\sym{***}&        0.54\sym{***}&        0.74\sym{***}&        0.73\sym{***}\\
+                    &      (0.02)         &      (0.03)         &      (0.03)         &      (0.02)         &      (0.03)         &      (0.03)         \\
+Individual Controls  &  & \checkmark & \checkmark &  & \checkmark & \checkmark \\                 Children Controls  &  &   & \checkmark & &  & \checkmark\\                 Geographic Controls  & & \checkmark & \checkmark &  & \checkmark & \checkmark\\                         \hline
+Observations        &       12365         &       12133         &       12133         &        9443         &        9415         &        9415         \\
+\hline

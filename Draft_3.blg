@@ -1,0 +1,107 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Draft_3.aux
+The style file: apa.bst
+Database file #1: mybibliography.bib
+I was expecting a `,' or a `}'---line 384 of file mybibliography.bib
+ : 
+ : @article{imai2005a,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 427 of file mybibliography.bib
+ : @article{marinescu2016
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 437 of file mybibliography.bib
+ : @article{lillard1995
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 448 of file mybibliography.bib
+ : @article{brien2006
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 459 of file mybibliography.bib
+ : @article{svarer2004
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 477 of file mybibliography.bib
+ : @article{gemici2014
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 514 of file mybibliography.bib
+ : @article{reinhold2010
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 525 of file mybibliography.bib
+ : @article{jovanovic1979
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 550 of file mybibliography.bib
+ : @article{fine1999
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 561 of file mybibliography.bib
+ : @article{lundberg2016
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 581 of file mybibliography.bib
+ : @article{schramm2006
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 609 of file mybibliography.bib
+ : @book{thornton2008
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 616 of file mybibliography.bib
+ : @article{fernandez2014
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 638 of file mybibliography.bib
+ : @article{voena2015
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 660 of file mybibliography.bib
+ : @article{jenkins1995
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 671 of file mybibliography.bib
+ : @article{perelli2016
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 682 of file mybibliography.bib
+ : @article{bumpass2000
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 693 of file mybibliography.bib
+ : @article{lichter2010
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 704 of file mybibliography.bib
+ : @article{cox1972
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 721 of file mybibliography.bib
+ : @article{chiappori1997
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 797 of file mybibliography.bib
+ : @article{greenwood2016
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 829 of file mybibliography.bib
+ : @article{mazzocco2007
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 858 of file mybibliography.bib
+ : @article{rigas2015
+ :                   ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 977 of file mybibliography.bib
+ : 
+ : @article{ciscato2019,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 1157 of file mybibliography.bib
+ : @article{bumpass2000
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--empty journal in croissant2012
+(There were 25 error messages)

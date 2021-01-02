@@ -1,0 +1,23 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: onlineappendix.aux
+The style file: apa.bst
+Database file #1: mybibliography.bib
+I was expecting a `,' or a `}'---line 384 of file mybibliography.bib
+ : 
+ : @article{imai2005a,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 550 of file mybibliography.bib
+ : @article{fine1999
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 660 of file mybibliography.bib
+ : @article{jenkins1995
+ :                     ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 977 of file mybibliography.bib
+ : 
+ : @article{ciscato2019,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty journal in croissant2012
+(There were 4 error messages)

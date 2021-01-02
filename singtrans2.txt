@@ -1,0 +1,11 @@
+----------------------------
+                      (1)   \\
+----------------------------
+eq1                         \\
+College              0.72***\\
+                  (-9.46)   \\
+Individual Controls  & \checkmark & \checkmark \\         Religion Dummies & \checkmark & \checkmark  \\         Macro Region Dummies  &\checkmark & \checkmark \\                 Children Controls  &  &  \checkmark \\                         \hline
+N                    6288   \\
+----------------------------
+Exponentiated coefficients; t statistics in parentheses
+* p<0.10, ** p<0.05, *** p<0.01

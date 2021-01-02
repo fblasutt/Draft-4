@@ -1,0 +1,54 @@
+----------------------------
+                      (1)   \\
+                       _t   \\
+----------------------------
+eq1                         \\
+College              0.72***\\
+                  (-9.46)   \\
+
+Age                  1.36***\\
+                   (7.35)   \\
+
+Age2                 0.99***\\
+                  (-6.43)   \\
+
+Female               1.30***\\
+                   (8.81)   \\
+
+Hispanic             0.96   \\
+                  (-0.82)   \\
+
+Church               0.80***\\
+                 (-18.51)   \\
+
+Black                1.32***\\
+                   (7.05)   \\
+
+Religiosity          1.00   \\
+                  (-0.05)   \\
+
+Rural                1.05   \\
+                   (0.88)   \\
+
+Smoke                1.44***\\
+                   (8.62)   \\
+
+Start                1.00** \\
+                  (-2.49)   \\
+
+Start2               1.00***\\
+                  (-4.39)   \\
+
+Numcoh               1.38***\\
+                  (12.69)   \\
+
+Nummar               0.85***\\
+                  (-4.02)   \\
+
+Num_ch_in            0.90***\\
+                  (-4.28)   \\
+Religion Dummies  & \checkmark & \checkmark & \checkmark \\             Macro Region Dummies  &\checkmark & \checkmark & \checkmark \\                         \hline
+N                    6288   \\
+----------------------------
+Exponentiated coefficients; t statistics in parentheses
+* p<0.10, ** p<0.05, *** p<0.01

@@ -1,0 +1,13 @@
+{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}               \begin{tabular}{l*{6}{c}}                           \toprule 
+	\\[-1.8ex] & \multicolumn{3}{c}{Sample I} & \multicolumn{3}{c}{Sample II} \\ 
+	\cmidrule(lr){2-4} \cmidrule(lr){5-7} 		
+		             &\multicolumn{1}{c}{(1)}  &\multicolumn{1}{c}{(2)}  &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)} &\multicolumn{1}{c}{(5)}  &\multicolumn{1}{c}{(6)}        \\              \midrule              \textsc{Dep. Variable:} & & & & & & \\ \textsc{Hazard of Divorce} & & & & & & \\ 
+\addlinespace
+Cohabited (0/1)     &       16.87\sym{***}&        3.31\sym{***}&        4.35\sym{***}&       19.22\sym{***}&        3.60\sym{***}&        4.64\sym{***}\\
+                    &      (5.66)         &      (1.36)         &      (1.91)         &      (7.19)         &      (1.65)         &      (2.29)         \\
+\addlinespace
+Log(Cohabitation Length)&        0.74\sym{***}&        0.88\sym{***}&        0.85\sym{***}&        0.74\sym{***}&        0.87\sym{***}&        0.84\sym{***}\\
+                    &      (0.03)         &      (0.04)         &      (0.04)         &      (0.03)         &      (0.04)         &      (0.05)         \\
+Individual Controls  &  & \checkmark & \checkmark &  & \checkmark & \checkmark \\          Relationship Specific Controls &  & \checkmark & \checkmark &  & \checkmark & \checkmark \\                  Children Controls  &  &  & \checkmark & & & \checkmark\\                  Geographic Controls  & & \checkmark & \checkmark &  & \checkmark & \checkmark\\                          \hline
+Observations        &        5127         &        4948         &        4948         &        4260         &        4118         &        4118         \\
+\hline

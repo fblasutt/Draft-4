@@ -1,0 +1,20 @@
+
+
+   	   			\begin{tikzpicture}[domain=0:1,scale=1]
+   	   			\node [block, name=input,align=center] (sum) {Single\\ 7348};
+   	   			\node [block, above right of=sum, node distance=6cm] (controller) {Separation};
+   	   			\node [block, below right of=controller,
+   	   			node distance=6cm,align=center] (system) {Cohabitation \\ 5308};
+   	   			\draw [<-,  thick, latex-] (controller) -| node[below left]{47,8\%}(system);
+   	   			\node [output, right of=system] (output) {fe};
+   	   			\node [block, below left of=system,  node distance=6cm,align=center] (measurements) {Marriage \\ 2814};
+   	   			\node [block, left of=measurements, node distance=4.2cm,align=left] (divorce) {Divorce};
+   	   			\draw [<-,  thick, latex-] (sum) |- node[below right]{100\%} (controller);
+   	   			\draw [->,  thick, -latex] (sum) -- node[above]{72,4\%} (system);
+   	   			\draw [->,  thick, -latex] (system) |-node[above left]{33,8\%} (measurements);
+   	   			\draw [->,  thick, -latex] (measurements) --node[above]{23,5\%} (divorce);
+   	   			\draw [->,  thick, -latex] (sum) --node[above right]{12,9\%} (measurements);
+   	   			\draw [->,  thick, -latex] (divorce) --node[right]{100\%} (sum);
+   	   			node [near end] {$$} (sum);
+   	   			\end{tikzpicture}
+
